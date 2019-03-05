@@ -1,3 +1,4 @@
+#include<math.h>
 #include "primitives.h"
 
 Point::Point(){
@@ -29,6 +30,13 @@ Point LineSegment::start_pt(){
 
 Point LineSegment::end_pt(){
     return(end_point);
+}
+
+len LineSegment::length(){
+    len l = pow((end_point.y - start_point.y), 2) + 
+            pow((end_point.x - start_point.x), 2);
+    l = sqrt(l);
+    return(l);
 }
 
 // TODO: Implement the rest of the functions of LineSegment class
