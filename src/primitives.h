@@ -1,4 +1,4 @@
-#ifndef PRIMITIES
+#ifndef PRIMITIVES
 #define PRIMITIVES
 
 typedef long double coordinate;
