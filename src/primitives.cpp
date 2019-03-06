@@ -11,6 +11,15 @@ Point::Point(coordinate x_in, coordinate y_in){
     y = y_in;
 }
 
+bool Point::operator< (const Point &right){
+    if(x < right.x)
+        return true;
+    else if( x > right.x)
+        return false;
+    else
+        return y < right.y;
+}
+
 LineSegment::LineSegment(Point p1, Point p2){
     if(p1.x < p2.x){
         start_point = p1;

@@ -10,6 +10,7 @@ class Point{
         coordinate y;
         Point();
         Point(coordinate x_in, coordinate y_in);
+        bool operator< (const Point &right);
 };
 
 class LineSegment{
