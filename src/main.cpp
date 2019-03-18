@@ -1,5 +1,5 @@
 #include<iostream>
-#include<intersecting-lines/components.h>
+#include "D:\Studies\my repo\intersecting-lines\include\intersecting-lines\components.h"
 
 #include "primitives.h"
 
