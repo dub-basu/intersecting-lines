@@ -8,4 +8,9 @@ project( intersecting-lines )
 include_directories( ./include ./src)
 
 # target
-add_executable(line-intersection ./src/main.cpp ./src/primitives.cpp ./src/components.cpp )
+add_executable(line-intersection
+                ./src/main.cpp
+                ./src/primitives.cpp
+                ./src/components.cpp
+                ./src/containers.cpp
+            )
