@@ -1,525 +1,309 @@
-#include <iostream> 
-#include <queue> 
-using namespace std;
 
-enum COLOR { RED, BLACK };
+// C program to delete a node from AVL Tree
+#include<stdio.h>
+#include<stdlib.h>
 
-class Node {
-public:
-	int val;
-	COLOR color;
-	Node *left, *right, *parent;
-
-	Node(int val) : val(val) {
-		parent = left = right = NULL;
-
-		// Node is created during insertion 
-		// Node is red at insertion 
-		color = RED;
-	}
-
-	// returns pointer to uncle 
-	Node *uncle() {
-		// If no parent or grandparent, then no uncle 
-		if (parent == NULL or parent->parent == NULL)
-			return NULL;
-
-		if (parent->isOnLeft())
-			// uncle on right 
-			return parent->parent->right;
-		else
-			// uncle on left 
-			return parent->parent->left;
-	}
-
-	// check if node is left child of parent 
-	bool isOnLeft() { return this == parent->left; }
-
-	// returns pointer to sibling 
-	Node *sibling() {
-		// sibling null if no parent 
-		if (parent == NULL)
-			return NULL;
-
-		if (isOnLeft())
-			return parent->right;
-
-		return parent->left;
-	}
-
-	// moves node down and moves given node in its place 
-	void moveDown(Node *nParent) {
-		if (parent != NULL) {
-			if (isOnLeft()) {
-				parent->left = nParent;
-			}
-			else {
-				parent->right = nParent;
-			}
-		}
-		nParent->parent = parent;
-		parent = nParent;
-	}
-
-	bool hasRedChild() {
-		return (left != NULL and left->color == RED) or
-			(right != NULL and right->color == RED);
-	}
+// An AVL tree node
+struct Node
+{
+	int key;
+	struct Node *left;
+	struct Node *right;
+	int height;
 };
 
-class RBTree {
-	Node *root;
+// A utility function to get maximum of two integers
+int max(int a, int b);
 
-	// left rotates the given node 
-	void leftRotate(Node *x) {
-		// new parent will be node's right child 
-		Node *nParent = x->right;
+// A utility function to get height of the tree
+int height(struct Node *N)
+{
+	if (N == NULL)
+		return 0;
+	return N->height;
+}
 
-		// update root if current node is root 
-		if (x == root)
-			root = nParent;
+// A utility function to get maximum of two integers
+int max(int a, int b)
+{
+	return (a > b) ? a : b;
+}
 
-		x->moveDown(nParent);
+/* Helper function that allocates a new node with the given key and
+	NULL left and right pointers. */
+struct Node* newNode(int key)
+{
+	struct Node* node = (struct Node*)
+		malloc(sizeof(struct Node));
+	node->key = key;
+	node->left = NULL;
+	node->right = NULL;
+	node->height = 1;  // new node is initially added at leaf
+	return(node);
+}
 
-		// connect x with new parent's left element 
-		x->right = nParent->left;
-		// connect new parent's left element with node 
-		// if it is not null 
-		if (nParent->left != NULL)
-			nParent->left->parent = x;
+// A utility function to right rotate subtree rooted with y
+// See the diagram given above.
+struct Node *rightRotate(struct Node *y)
+{
+	struct Node *x = y->left;
+	struct Node *T2 = x->right;
 
-		// connect new parent with x 
-		nParent->left = x;
+	// Perform rotation
+	x->right = y;
+	y->left = T2;
+
+	// Update heights
+	y->height = max(height(y->left), height(y->right)) + 1;
+	x->height = max(height(x->left), height(x->right)) + 1;
+
+	// Return new root
+	return x;
+}
+
+// A utility function to left rotate subtree rooted with x
+// See the diagram given above.
+struct Node *leftRotate(struct Node *x)
+{
+	struct Node *y = x->right;
+	struct Node *T2 = y->left;
+
+	// Perform rotation
+	y->left = x;
+	x->right = T2;
+
+	//  Update heights
+	x->height = max(height(x->left), height(x->right)) + 1;
+	y->height = max(height(y->left), height(y->right)) + 1;
+
+	// Return new root
+	return y;
+}
+
+// Get Balance factor of node N
+int getBalance(struct Node *N)
+{
+	if (N == NULL)
+		return 0;
+	return height(N->left) - height(N->right);
+}
+
+struct Node* insert(struct Node* node, int key)
+{
+	/* 1.  Perform the normal BST rotation */
+	if (node == NULL)
+		return(newNode(key));
+
+	if (key < node->key)
+		node->left = insert(node->left, key);
+	else if (key > node->key)
+		node->right = insert(node->right, key);
+	else // Equal keys not allowed
+		return node;
+
+	/* 2. Update height of this ancestor node */
+	node->height = 1 + max(height(node->left),
+		height(node->right));
+
+	/* 3. Get the balance factor of this ancestor
+		  node to check whether this node became
+		  unbalanced */
+	int balance = getBalance(node);
+
+	// If this node becomes unbalanced, then there are 4 cases
+
+	// Left Left Case
+	if (balance > 1 && key < node->left->key)
+		return rightRotate(node);
+
+	// Right Right Case
+	if (balance < -1 && key > node->right->key)
+		return leftRotate(node);
+
+	// Left Right Case
+	if (balance > 1 && key > node->left->key)
+	{
+		node->left = leftRotate(node->left);
+		return rightRotate(node);
 	}
 
-	void rightRotate(Node *x) {
-		// new parent will be node's left child 
-		Node *nParent = x->left;
-
-		// update root if current node is root 
-		if (x == root)
-			root = nParent;
-
-		x->moveDown(nParent);
-
-		// connect x with new parent's right element 
-		x->left = nParent->right;
-		// connect new parent's right element with node 
-		// if it is not null 
-		if (nParent->right != NULL)
-			nParent->right->parent = x;
-
-		// connect new parent with x 
-		nParent->right = x;
+	// Right Left Case
+	if (balance < -1 && key < node->right->key)
+	{
+		node->right = rightRotate(node->right);
+		return leftRotate(node);
 	}
 
-	void swapColors(Node *x1, Node *x2) {
-		COLOR temp;
-		temp = x1->color;
-		x1->color = x2->color;
-		x2->color = temp;
-	}
+	/* return the (unchanged) node pointer */
+	return node;
+}
 
-	void swapValues(Node *u, Node *v) {
-		int temp;
-		temp = u->val;
-		u->val = v->val;
-		v->val = temp;
-	}
+/* Given a non-empty binary search tree, return the
+   node with minimum key value found in that tree.
+   Note that the entire tree does not need to be
+   searched. */
+struct Node * minValueNode(struct Node* node)
+{
+	struct Node* current = node;
 
-	// fix red red at given node 
-	void fixRedRed(Node *x) {
-		// if x is root color it black and return 
-		if (x == root) {
-			x->color = BLACK;
-			return;
-		}
+	/* loop down to find the leftmost leaf */
+	while (current->left != NULL)
+		current = current->left;
 
-		// initialize parent, grandparent, uncle 
-		Node *parent = x->parent, *grandparent = parent->parent,
-			*uncle = x->uncle();
+	return current;
+}
 
-		if (parent->color != BLACK) {
-			if (uncle != NULL && uncle->color == RED) {
-				// uncle red, perform recoloring and recurse 
-				parent->color = BLACK;
-				uncle->color = BLACK;
-				grandparent->color = RED;
-				fixRedRed(grandparent);
-			}
-			else {
-				// Else perform LR, LL, RL, RR 
-				if (parent->isOnLeft()) {
-					if (x->isOnLeft()) {
-						// for left right 
-						swapColors(parent, grandparent);
-					}
-					else {
-						leftRotate(parent);
-						swapColors(x, grandparent);
-					}
-					// for left left and left right 
-					rightRotate(grandparent);
-				}
-				else {
-					if (x->isOnLeft()) {
-						// for right left 
-						rightRotate(parent);
-						swapColors(x, grandparent);
-					}
-					else {
-						swapColors(parent, grandparent);
-					}
+// Recursive function to delete a node with given key
+// from subtree with given root. It returns root of
+// the modified subtree.
+struct Node* deleteNode(struct Node* root, int key)
+{
+	// STEP 1: PERFORM STANDARD BST DELETE
 
-					// for right right and right left 
-					leftRotate(grandparent);
-				}
-			}
-		}
-	}
+	if (root == NULL)
+		return root;
 
-	// find node that do not have a left child 
-	// in the subtree of the given node 
-	Node *successor(Node *x) {
-		Node *temp = x;
+	// If the key to be deleted is smaller than the
+	// root's key, then it lies in left subtree
+	if (key < root->key)
+		root->left = deleteNode(root->left, key);
 
-		while (temp->left != NULL)
-			temp = temp->left;
+	// If the key to be deleted is greater than the
+	// root's key, then it lies in right subtree
+	else if (key > root->key)
+		root->right = deleteNode(root->right, key);
 
-		return temp;
-	}
+	// if key is same as root's key, then This is
+	// the node to be deleted
+	else
+	{
+		// node with only one child or no child
+		if ((root->left == NULL) || (root->right == NULL))
+		{
+			struct Node *temp = root->left ? root->left :
+				root->right;
 
-	// find node that replaces a deleted node in BST 
-	Node *BSTreplace(Node *x) {
-		// when node have 2 children 
-		if (x->left != NULL and x->right != NULL)
-			return successor(x->right);
-
-		// when leaf 
-		if (x->left == NULL and x->right == NULL)
-			return NULL;
-
-		// when single child 
-		if (x->left != NULL)
-			return x->left;
-		else
-			return x->right;
-	}
-
-	// deletes the given node 
-	void deleteNode(Node *v) {
-		Node *u = BSTreplace(v);
-
-		// True when u and v are both black 
-		bool uvBlack = ((u == NULL or u->color == BLACK) and (v->color == BLACK));
-		Node *parent = v->parent;
-
-		if (u == NULL) {
-			// u is NULL therefore v is leaf 
-			if (v == root) {
-				// v is root, making root null 
+			// No child case
+			if (temp == NULL)
+			{
+				temp = root;
 				root = NULL;
 			}
-			else {
-				if (uvBlack) {
-					// u and v both black 
-					// v is leaf, fix double black at v 
-					fixDoubleBlack(v);
-				}
-				else {
-					// u or v is red 
-					if (v->sibling() != NULL)
-						// sibling is not null, make it red" 
-						v->sibling()->color = RED;
-				}
-
-				// delete v from the tree 
-				if (v->isOnLeft()) {
-					parent->left = NULL;
-				}
-				else {
-					parent->right = NULL;
-				}
-			}
-			delete v;
-			return;
+			else // One child case
+				*root = *temp; // Copy the contents of
+							   // the non-empty child
+			free(temp);
 		}
-
-		if (v->left == NULL or v->right == NULL) {
-			// v has 1 child 
-			if (v == root) {
-				// v is root, assign the value of u to v, and delete u 
-				v->val = u->val;
-				v->left = v->right = NULL;
-				delete u;
-			}
-			else {
-				// Detach v from tree and move u up 
-				if (v->isOnLeft()) {
-					parent->left = u;
-				}
-				else {
-					parent->right = u;
-				}
-				delete v;
-				u->parent = parent;
-				if (uvBlack) {
-					// u and v both black, fix double black at u 
-					fixDoubleBlack(u);
-				}
-				else {
-					// u or v red, color u black 
-					u->color = BLACK;
-				}
-			}
-			return;
-		}
-
-		// v has 2 children, swap values with successor and recurse 
-		swapValues(u, v);
-		deleteNode(u);
-	}
-
-	void fixDoubleBlack(Node *x) {
-		if (x == root)
-			// Reached root 
-			return;
-
-		Node *sibling = x->sibling(), *parent = x->parent;
-		if (sibling == NULL) {
-			// No sibiling, double black pushed up 
-			fixDoubleBlack(parent);
-		}
-		else {
-			if (sibling->color == RED) {
-				// Sibling red 
-				parent->color = RED;
-				sibling->color = BLACK;
-				if (sibling->isOnLeft()) {
-					// left case 
-					rightRotate(parent);
-				}
-				else {
-					// right case 
-					leftRotate(parent);
-				}
-				fixDoubleBlack(x);
-			}
-			else {
-				// Sibling black 
-				if (sibling->hasRedChild()) {
-					// at least 1 red children 
-					if (sibling->left != NULL and sibling->left->color == RED) {
-						if (sibling->isOnLeft()) {
-							// left left 
-							sibling->left->color = sibling->color;
-							sibling->color = parent->color;
-							rightRotate(parent);
-						}
-						else {
-							// right left 
-							sibling->left->color = parent->color;
-							rightRotate(sibling);
-							leftRotate(parent);
-						}
-					}
-					else {
-						if (sibling->isOnLeft()) {
-							// left right 
-							sibling->right->color = parent->color;
-							leftRotate(sibling);
-							rightRotate(parent);
-						}
-						else {
-							// right right 
-							sibling->right->color = sibling->color;
-							sibling->color = parent->color;
-							leftRotate(parent);
-						}
-					}
-					parent->color = BLACK;
-				}
-				else {
-					// 2 black children 
-					sibling->color = RED;
-					if (parent->color == BLACK)
-						fixDoubleBlack(parent);
-					else
-						parent->color = BLACK;
-				}
-			}
-		}
-	}
-
-	// prints level order for given node 
-	void levelOrder(Node *x) {
-		if (x == NULL)
-			// return if node is null 
-			return;
-
-		// queue for level order 
-		queue<Node *> q;
-		Node *curr;
-
-		// push x 
-		q.push(x);
-
-		while (!q.empty()) {
-			// while q is not empty 
-			// dequeue 
-			curr = q.front();
-			q.pop();
-
-			// print node value 
-			cout << curr->val << " ";
-
-			// push children to queue 
-			if (curr->left != NULL)
-				q.push(curr->left);
-			if (curr->right != NULL)
-				q.push(curr->right);
-		}
-	}
-
-	// prints inorder recursively 
-	void inorder(Node *x) {
-		if (x == NULL)
-			return;
-		inorder(x->left);
-		cout << x->val << " ";
-		inorder(x->right);
-	}
-
-public:
-	// constructor 
-	// initialize root 
-	RBTree() { root = NULL; }
-
-	Node *getRoot() { return root; }
-
-	// searches for given value 
-	// if found returns the node (used for delete) 
-	// else returns the last node while traversing (used in insert) 
-	Node *search(int n) {
-		Node *temp = root;
-		while (temp != NULL) {
-			if (n < temp->val) {
-				if (temp->left == NULL)
-					break;
-				else
-					temp = temp->left;
-			}
-			else if (n == temp->val) {
-				break;
-			}
-			else {
-				if (temp->right == NULL)
-					break;
-				else
-					temp = temp->right;
-			}
-		}
-
-		return temp;
-	}
-
-	// inserts the given value to tree 
-	void insert(int n) {
-		Node *newNode = new Node(n);
-		if (root == NULL) {
-			// when root is null 
-			// simply insert value at root 
-			newNode->color = BLACK;
-			root = newNode;
-		}
-		else {
-			Node *temp = search(n);
-
-			if (temp->val == n) {
-				// return if value already exists 
-				return;
-			}
-
-			// if value is not found, search returns the node 
-			// where the value is to be inserted 
-
-			// connect new node to correct node 
-			newNode->parent = temp;
-
-			if (n < temp->val)
-				temp->left = newNode;
-			else
-				temp->right = newNode;
-
-			// fix red red voilaton if exists 
-			fixRedRed(newNode);
-		}
-	}
-
-	// utility function that deletes the node with given value 
-	void deleteByVal(int n) {
-		if (root == NULL)
-			// Tree is empty 
-			return;
-
-		Node *v = search(n), *u;
-
-		if (v->val != n) {
-			cout << "No node found to delete with value:" << n << endl;
-			return;
-		}
-
-		deleteNode(v);
-	}
-
-	// prints inorder of the tree 
-	void printInOrder() {
-		cout << "Inorder: " << endl;
-		if (root == NULL)
-			cout << "Tree is empty" << endl;
 		else
-			inorder(root);
-		cout << endl;
+		{
+			// node with two children: Get the inorder
+			// successor (smallest in the right subtree)
+			struct Node* temp = minValueNode(root->right);
+
+			// Copy the inorder successor's data to this node
+			root->key = temp->key;
+
+			// Delete the inorder successor
+			root->right = deleteNode(root->right, temp->key);
+		}
 	}
 
-	// prints level order of the tree 
-	void printLevelOrder() {
-		cout << "Level order: " << endl;
-		if (root == NULL)
-			cout << "Tree is empty" << endl;
-		else
-			levelOrder(root);
-		cout << endl;
+	// If the tree had only one node then return
+	if (root == NULL)
+		return root;
+
+	// STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
+	root->height = 1 + max(height(root->left),
+		height(root->right));
+
+	// STEP 3: GET THE BALANCE FACTOR OF THIS NODE (to
+	// check whether this node became unbalanced)
+	int balance = getBalance(root);
+
+	// If this node becomes unbalanced, then there are 4 cases
+
+	// Left Left Case
+	if (balance > 1 && getBalance(root->left) >= 0)
+		return rightRotate(root);
+
+	// Left Right Case
+	if (balance > 1 && getBalance(root->left) < 0)
+	{
+		root->left = leftRotate(root->left);
+		return rightRotate(root);
 	}
-};
 
-int main() {
-	RBTree tree;
+	// Right Right Case
+	if (balance < -1 && getBalance(root->right) <= 0)
+		return leftRotate(root);
 
-	tree.insert(7);
-	tree.insert(3);
-	tree.insert(18);
-	tree.insert(10);
-	tree.insert(22);
-	tree.insert(8);
-	tree.insert(11);
-	tree.insert(26);
-	tree.insert(2);
-	tree.insert(6);
-	tree.insert(13);
+	// Right Left Case
+	if (balance < -1 && getBalance(root->right) > 0)
+	{
+		root->right = rightRotate(root->right);
+		return leftRotate(root);
+	}
 
-	tree.printInOrder();
-	tree.printLevelOrder();
+	return root;
+}
 
-	cout << endl << "Deleting 18, 11, 3, 10, 22" << endl;
+// A utility function to print preorder traversal of
+// the tree.
+// The function also prints height of every node
+void preOrder(struct Node *root)
+{
+	if (root != NULL)
+	{
+		printf("%d ", root->key);
+		preOrder(root->left);
+		preOrder(root->right);
+	}
+}
 
-	tree.deleteByVal(18);
-	tree.deleteByVal(11);
-	tree.deleteByVal(3);
-	tree.deleteByVal(10);
-	tree.deleteByVal(22);
+/* Driver program to test above function*/
+int main()
+{
+	struct Node *root = NULL;
 
-	tree.printInOrder();
-	tree.printLevelOrder();
+	/* Constructing tree given in the above figure */
+	root = insert(root, 9);
+	root = insert(root, 5);
+	root = insert(root, 10);
+	root = insert(root, 0);
+	root = insert(root, 6);
+	root = insert(root, 11);
+	root = insert(root, -1);
+	root = insert(root, 1);
+	root = insert(root, 2);
+
+	/* The constructed AVL Tree would be
+			9
+		   /  \
+		  1    10
+		/  \     \
+	   0    5     11
+	  /    /  \
+	 -1   2    6
+	*/
+
+	printf("Preorder traversal of the constructed AVL "
+		"tree is \n");
+	preOrder(root);
+
+	root = deleteNode(root, 10);
+
+	/* The AVL Tree after deletion of 10
+			1
+		   /  \
+		  0    9
+		/     /  \
+	   -1    5     11
+		   /  \
+		  2    6
+	*/
+
+	printf("\nPreorder traversal after deletion of 10 \n");
+	preOrder(root);
+
 	return 0;
 }
