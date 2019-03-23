@@ -1,24 +1,14 @@
 #include <bits/stdc++.h>
+//#include <primitives.h>
+#include "Status.h"
 using namespace std;
-#define LineSegment pair<int,int>
 
-/**
-* Defining Node to have value, left & right children and height &etc.
-*/
-struct Node
-{
-	LineSegment key;
-	Node *left;
-	Node *right;
-	Node *parent;
-    LineSegment rightmost;
-	int height;
-};
 
 /**
 * Get height of the current node.
 */
-int height(Node *n)
+template<class T>
+int Status<T>::height(Node *n)
 {
 	if (n == NULL)
 		return 0;
@@ -28,9 +18,8 @@ int height(Node *n)
 /**
 * Constructor for a new node.
 */
-
-Node* newNode(LineSegment key)
-{
+template<class T>
+typename Status<T>::Node* Status<T>::newNode(T key){
 	Node* node = (Node *)malloc(sizeof(Node));
 	node->left = node->right = NULL;
 	node->height = 1;//!< Added at leaf initially.
@@ -42,31 +31,17 @@ Node* newNode(LineSegment key)
 /**
 * Performs right rotation
 */
-
-Node* rightRotate(Node *y)
-{
-    //cout<<"Right"<<endl;
+template<class T>
+typename Status<T>::Node* Status<T>::rightRotate(Node *y){
 	Node *x = y->left;
 	Node *t2 = x->right;
 
-	//Rotate now.
 	x->right = y;
 	y->left = t2;
 
-	//Update heights.
+	//Update heights
 	y->height = max(height(y->left), height(y->right)) + 1; //!< height is 1+max possible heights possible by both subtrees.
 	x->height = max(height(x->right), height(x->left)) + 1;
-	//Update node invariants for rightmost property.
-	/*
-	if(y->right!=NULL)
-        y->rightmost=y->right->rightmost;
-    if(y->left!=NULL)
-        y->key=y->left->rightmost;
-    if(x->right!=NULL)
-        x->rightmost=x->right->rightmost;
-    if(x->left!=NULL)
-        x->key=x->left->rightmost;
-    */
 
 	return x;
 }
@@ -74,8 +49,8 @@ Node* rightRotate(Node *y)
 /**
 * Left rotate a tree.
 */
-
-Node *leftRotate(Node *x)
+template<class T>
+typename  Status<T>::Node* Status<T>::leftRotate(Node *x)
 {
     //cout<<"Left"<<endl;
 	Node *y = x->right;
@@ -87,26 +62,14 @@ Node *leftRotate(Node *x)
 	x->height = max(height(x->right), height(x->left)) + 1;
 	y->height = max(height(y->left), height(y->right)) + 1;
 
-    /*
-	if(y->right!=NULL)
-        y->rightmost=y->right->rightmost;
-    if(y->left!=NULL)
-        y->key=y->left->rightmost;
-    if(x->right!=NULL)
-        x->rightmost=x->right->rightmost;
-    if(x->left!=NULL)
-        x->key=x->left->rightmost;
-    */
-
-
 	return y;
 }
 
 /**
 * Get balance paramenter for Node N.
 */
-
-int getBalance(Node *n)
+template <class T>
+int Status<T>::getBalance(Node *n)
 {
 	if (n == NULL)return 0;
 	else return height(n->left) - height(n->right);
@@ -115,7 +78,8 @@ int getBalance(Node *n)
 /**
 * Check if given node is leaf.
 */
-bool checkLeaf(Node *n)
+template <class T>
+bool Status<T>::checkLeaf(Node *n)
 {
     if(n==NULL)return false;
     return (n->right==n->left and n->left==NULL and n->rightmost==n->key);
@@ -123,19 +87,19 @@ bool checkLeaf(Node *n)
 /**
 * Insert into AVL node
 */
-Node *insert(Node* node, LineSegment key)
-{
+template <class T>
+typename Status<T>::Node* Status<T>::__insert(Node* node, T key) {
     int left=0;
 	if (node == NULL)
 		return newNode(key);
 	if (key < node->key)
     {
-        node->left = insert(node->left, key),++left;
+        node->left = __insert(node->left, key),++left;
     }
 
 	else if (key > node->key)
     {
-        node->right = insert(node->right, key),--left;
+        node->right = __insert(node->right, key),--left;
     }
 	else
 		return node; //!< We are not allowing duplicates
@@ -163,25 +127,24 @@ Node *insert(Node* node, LineSegment key)
 /**
 * Get leftmost leaf of the tree.
 */
-
-Node* minValueNode(Node *node)
+template <class T>
+typename Status<T>::Node* Status<T>::minValueNode(Node *node)
 {
 	Node *current = node;
 	while (current->left != NULL)current = current->left;
 	return current;
 }
-
-Node *deleteNode(Node* root, LineSegment key)
-{
+template <class T>
+typename Status<T>::Node* Status<T>::__remove(Node* root, T key){
     int left=0;
 	if (root == NULL)return root;
 	if (key < root->key)
     {
-        root->left = deleteNode(root->left, key),left++;
+        root->left = __remove(root->left, key),left++;
     }
 	else if (key > root->key)
     {
-        root->right = deleteNode(root->right, key),left--;
+        root->right = __remove(root->right, key),left--;
     }
 	else
 
@@ -204,13 +167,11 @@ Node *deleteNode(Node* root, LineSegment key)
 		{
 			struct Node* temp = minValueNode(root->right);
             root->key = temp->key;
-            root->right = deleteNode(root->right, temp->key);
+            root->right = __remove(root->right, temp->key);
 		}
 	}
 
 	if (root == NULL)return root;
-
-
 
 	root->height = 1 + max(height(root->left), height(root->right));
 	int bal = getBalance(root);
@@ -233,33 +194,30 @@ Node *deleteNode(Node* root, LineSegment key)
 	return root;
 }
 
-void inorder(Node *n)
-{
-	if (n != NULL)
-	{
-		inorder(n->left);
-		cout << n->key.first << "-" << n->key.second << " ";
-		inorder(n->right);
+template <class T>
+void Status<T>::__inorder(typename Status<T>::Node *n){
+	if (n != NULL){
+		__inorder(n->left);
+		cout << n->key << " ";
+		__inorder(n->right);
 	}
 }
 
 /**
 * Search the tree for left sibling of node with value key.
 */
-
-Node *searchL(Node *root,LineSegment key)
-{
-    //cout<<"In the func!!"<<endl;
+template <class T>
+T* Status<T>::searchL(T key){
     Node *curr=root;
-    /*Replace below code with appropriate constructor for min line seg*/
-    LineSegment mini;
-    mini.first=mini.second=INT_MIN;
-    Node *ans = newNode(mini);
-    /*Till here needs to be replaced.*/
-    //cout<<"Starting loop!!"<<endl;
+    while(curr->left != nullptr)
+    	curr = curr->left;
+    if(curr->key == key)
+    	return nullptr;
+    curr = root;
+    Node *ans = root;
+
     while(curr != NULL)
     {
-        cout<<"Curr="<<curr->key.first<<" "<<curr->key.second<<endl;
         if(curr->key<key and ans->key <=curr->key)
             ans=curr;
         if(key <= curr->key)
@@ -267,21 +225,23 @@ Node *searchL(Node *root,LineSegment key)
         else
             curr=curr->right;
     }
-    return ans;
+    return &(ans->key);
 }
 
 /**
 * Search the tree for right sibling of node with value key.
 */
-
-Node *searchR(Node *root,LineSegment key)
+template <class T>
+T* Status<T>::searchR(T key)
 {
     Node *curr=root;
-    /*Replace below code with appropriate constructor for min line seg*/
-    LineSegment mini;
-    mini.first=mini.second=INT_MAX;
-    Node *ans = newNode(mini);
-    /*Till here needs to be replaced.*/
+	while(curr->left != nullptr)
+		curr = curr->left;
+	if (curr->key == key)
+		return nullptr;
+
+	curr = root;
+    Node *ans = root;
     while(curr != NULL)
     {
         if(curr->key>key and curr->key <ans->key)
@@ -291,43 +251,20 @@ Node *searchR(Node *root,LineSegment key)
         else
             curr=curr->right;
     }
-    return ans;
+    return &(ans->key);
 }
 
-int main()
-{
-	Node *root = NULL;
-	LineSegment temp;
-	while (true)
-	{
-		cin >> temp.first >> temp.second;
-		if (temp.first == -1)break;
-		root=insert(root, temp);
-		cout << "Inorder Trversal: ";
-		inorder(root);
-		cout<<endl;
-	}
+template <class T>
+void Status<T>::inorder() {
+	__inorder(root);
+}
 
-	while (true)
-	{
-		cin >> temp.first >> temp.second;
-		if (temp.first == -1)break;
-		root=deleteNode(root, temp);
-		cout << "Inorder Trversal(Deletion): ";
-		inorder(root);
-		cout<<endl;
-	}
+template <class T>
+void Status<T>::insert(T key) {
+	root = __insert(root, key);
+}
 
-	while(true)
-    {
-        cout<<"Which node to search?"<<endl;
-        cin>>temp.first>>temp.second;
-        if(temp.first==-1)break;
-        Node *leftN= searchL(root,temp);
-        Node *rightN=searchR(root,temp);
-        cout<<"L Sibl. = "<<leftN->key.first<<"-"<<leftN->key.second<<endl;
-        cout<<"R Sibl. = "<<rightN->key.first<<"-"<<rightN->key.second<<endl;
-    }
-
-	return 0;
+template <class T>
+void Status<T>::remove(T key){
+	root = __remove(root, key);
 }
