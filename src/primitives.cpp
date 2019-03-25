@@ -11,13 +11,9 @@ Point::Point(coordinate x_in, coordinate y_in){
     y = y_in;
 }
 
-bool Point::operator< (const Point &right){
-    if(x < right.x)
-        return true;
-    else if( x > right.x)
-        return false;
-    else
-        return y < right.y;
+bool Point::operator==(const Point &p2) {
+    // TODO: Floating point errors handle? Some epsilon
+    return this.x == p2.x && this.y == p2.y;
 }
 
 LineSegment::LineSegment(Point p1, Point p2){

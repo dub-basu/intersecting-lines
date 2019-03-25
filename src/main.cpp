@@ -8,6 +8,7 @@
 
 //#include "primitives.h"
 #include "Status.cpp"
+#include "EventQueue.cpp"
 using namespace std;
 
 void init_graphix_class(Graphix* x){

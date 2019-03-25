@@ -10,7 +10,7 @@ class Point{
         coordinate y;
         Point();
         Point(coordinate x_in, coordinate y_in);
-        bool operator< (const Point &right);
+        bool operator== (const Point& p2);
 };
 
 class LineSegment{
@@ -21,7 +21,9 @@ class LineSegment{
         LineSegment(Point p1, Point p2);
         bool contains_point(Point pt);
         bool intersects_with(LineSegment ls);
-        len length();  
+        bool operator== (const LineSegment& l2);
+
+        len length();
         Point start_pt();
         Point end_pt();
 };

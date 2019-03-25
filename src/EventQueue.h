@@ -1,24 +1,13 @@
-#include<bits/stdc++.h>
+#include<vector>
 
 using namespace std;
 
-struct Point {
-int x,y;
-};
-class Event
-{
-    public:
-	Point p;
-	bool operator < (const Event y);
-
-};
-
+template <class T>
 class EventQueue
 {
-	vector <Event> events; //!< Stores all the event points the sweep line intersects.
+	vector <T> events; //!< Stores all the event points the sweep line intersects.
 
 public:
-
 	/**
 	*minHeapify to correct the event queue.
 	*/
@@ -28,16 +17,16 @@ public:
 	* Extract the minimum element from the event queue. This also removes the element from queue.
 	*/
 
-	Event extractMin();
+	T extractMin();
 
-	Event peek();
+	T peek();
 
 
 	/**
 	* Insert a new event in the event queue.
 	*/
 
-	void insert(Event k);
+	void insert(T k);
 
 	/**
 	* Get size of the heap.
