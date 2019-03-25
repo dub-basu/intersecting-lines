@@ -8,5 +8,5 @@ project( intersecting-lines )
 include_directories( ./include ./src)
 
 # target
-add_executable(line-intersection  ./src/Status.cpp ./src/main.cpp)##./src/primitives.cpp ./src/components.cpp src/LineSegmentIntersector.cpp src/LineSegmentIntersector.h src/Status.h)
+add_executable(line-intersection  ./src/Status.cpp ./src/main.cpp ./src/primitives.cpp src/LineSegmentIntersector.cpp)##./src/primitives.cpp ./src/components.cpp src/LineSegmentIntersector.cpp src/LineSegmentIntersector.h src/Status.h)
 ## Removed ./src/main.cpp
