@@ -10,6 +10,11 @@ Point::Point(coordinate x_in, coordinate y_in){
     y = y_in;
 }
 
+bool Point::operator==(const Point &p2) {
+    // TODO: Floating point errors handle? Some epsilon
+    return this.x == p2.x && this.y == p2.y;
+}
+
 LineSegment::LineSegment(Point p1, Point p2){
     if(p1.x < p2.x){
         start_point = p1;

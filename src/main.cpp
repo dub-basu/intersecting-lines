@@ -3,6 +3,7 @@
 
 //#include "primitives.h"
 #include "Status.cpp"
+#include "EventQueue.cpp"
 using namespace std;
 
 int main(){
