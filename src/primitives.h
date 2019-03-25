@@ -7,6 +7,9 @@
 typedef long double coordinate;
 typedef long double len;
 
+#define NAN_POINT Point(std::numeric_limits<coordinate>::quiet_NaN(), \
+                        std::numeric_limits<coordinate>::quiet_NaN())
+
 class Point{
     public:
         coordinate x;
@@ -25,6 +28,7 @@ class LineSegment{
         LineSegment(Point p1, Point p2);
         bool contains_point(Point pt);
         Point intersects_at(LineSegment ls);
+        Point y_projection(Point pt);
         bool operator== (const LineSegment& l2);
         len length();
         Point start_pt();

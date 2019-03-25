@@ -37,13 +37,16 @@ int main(){
     LineSegment l1(p1,p2);
     LineSegment l2(p3,p4);
     
-    Point p5;
-    p5 = l2.intersects_at(l1);
-    cout << p5.is_nan();
+    // Point p5;
+    // p5 = l2.intersects_at(l1);
+    // cout << p5.is_nan();
     // cout << p5.x << " " << p5.y << endl;
     // Point p6(1,-30);
     // if(l1.contains_point(p6)) cout << "true" << endl;
     // else cout << "false" << endl;
+
+    Point p7 = l1.y_projection(Point(0,1.5));
+    cout << p7.x << " " << p7.y << endl;
 
     return 0;
 }

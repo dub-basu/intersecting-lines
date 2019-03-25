@@ -23,8 +23,8 @@ bool Point::is_nan(){
 }
 
 bool LineSegment::contains_point(Point pt){
-    coordinate slope_diff = (pt.x - start_point.x) * (pt.y - start_point.y)
-                          - (pt.x - end_point.x) * (pt.y - end_point.y);
+    coordinate slope_diff = (pt.x - start_point.x) * (pt.y - end_point.y)
+                          - (pt.x - end_point.x) * (pt.y - start_point.y);
 
     if(slope_diff != 0){
         return false;
@@ -46,11 +46,9 @@ Point LineSegment::intersects_at(LineSegment ls){
           p4 = ls.end_point;
 
     coordinate denr = (p4.x - p3.x)*(p1.y - p2.y) - (p1.x - p2.x)*(p4.y - p3.y);
-    std::cout << denr << std::endl;
     
     if( denr == 0 ){
-        return Point(   std::numeric_limits<coordinate>::quiet_NaN(), 
-                        std::numeric_limits<coordinate>::quiet_NaN());
+        return (NAN_POINT);
     }
 
     coordinate ta, tb;
@@ -63,12 +61,10 @@ Point LineSegment::intersects_at(LineSegment ls){
         return Point(p1.x + ta * (p2.x - p1.x), p1.y + ta * (p2.y - p1.y));
     }
     else {
-        return Point(   std::numeric_limits<coordinate>::quiet_NaN(), 
-                        std::numeric_limits<coordinate>::quiet_NaN()); 
+        return (NAN_POINT); 
     }
 
 }
-
 
 LineSegment::LineSegment(Point p1, Point p2){
     if(p1.x < p2.x){
@@ -91,4 +87,15 @@ Point LineSegment::end_pt(){
     return(end_point);
 }
 
-// TODO: Implement the rest of the functions of LineSegment class
+Point LineSegment::y_projection(Point pt){
+    if(end_point.y == start_point.y){
+        return NAN_POINT;
+    }
+    else {
+        coordinate x_coord = (pt.y - start_point.y) / (end_point.y - start_point.y);
+        x_coord *= (end_point.x - start_point.x);
+        x_coord += start_point.x;
+        Point retPt = Point(x_coord, pt.y);
+        return this -> contains_point(retPt) ? retPt : NAN_POINT ;
+    }
+}
