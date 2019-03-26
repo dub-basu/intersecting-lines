@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 //#include <primitives.h>
 #include "Status.h"
+#include "LineSegmentIntersector.h"
 using namespace std;
 
 
@@ -198,7 +199,7 @@ template <class T>
 void Status<T>::__inorder(typename Status<T>::Node *n){
 	if (n != NULL){
 		__inorder(n->left);
-		cout << n->key << " ";
+//		cout << n->key << " ";
 		__inorder(n->right);
 	}
 }
@@ -209,12 +210,14 @@ void Status<T>::__inorder(typename Status<T>::Node *n){
 template <class T>
 T* Status<T>::searchL(T key){
     Node *curr=root;
-    while(curr->left != nullptr)
+    while(curr->left != NULL)
     	curr = curr->left;
     if(curr->key == key)
-    	return nullptr;
+    	return NULL;
+
+    Node *ans = curr;
     curr = root;
-    Node *ans = root;
+
 
     while(curr != NULL)
     {
@@ -235,13 +238,13 @@ template <class T>
 T* Status<T>::searchR(T key)
 {
     Node *curr=root;
-	while(curr->left != nullptr)
-		curr = curr->left;
+	while(curr->right != NULL)
+		curr = curr->right;
 	if (curr->key == key)
-		return nullptr;
+		return NULL;
 
+	Node *ans = curr;
 	curr = root;
-    Node *ans = root;
     while(curr != NULL)
     {
         if(curr->key>key and curr->key <ans->key)
@@ -268,3 +271,7 @@ template <class T>
 void Status<T>::remove(T key){
 	root = __remove(root, key);
 }
+
+// Another instance of me not knowing wtf is happening;
+template class Status<LineSegmentIntersector::LSISegment>;
+template class Status<int>;

@@ -7,8 +7,9 @@
 #include "primitives.h"
 
 #include "primitives.h"
-#include "Status.cpp"
-#include "EventQueue.cpp"
+#include "EventQueue.h"
+#include "LineSegmentIntersector.h"
+#include "Status.h"
 using namespace std;
 
 void init_graphix_class(Graphix* x){
@@ -66,20 +67,17 @@ int main(int argc, char** argv){
     s.inorder();
 
     Point p1(1,1), p2(3,3);
-    Point p3(2,1), p4(4,3);
+    Point p3(2,1), p4(1,2);
     LineSegment l1(p1,p2);
     LineSegment l2(p3,p4);
-    
-    // Point p5;
-    // p5 = l2.intersects_at(l1);
-    // cout << p5.is_nan();
-    // cout << p5.x << " " << p5.y << endl;
-    // Point p6(1,-30);
-    // if(l1.contains_point(p6)) cout << "true" << endl;
-    // else cout << "false" << endl;
+//
+    vector<LineSegment> inp {l1,l2};
 
-    Point p7 = l1.y_projection(Point(0,1.5));
-    cout << p7.x << " " << p7.y << endl;
+    LineSegmentIntersector lsi(inp);
+
+    LSIResult res = lsi.computeIntersections();
+    cout << res.begin() -> first.x << " " << res.begin() -> first.y << endl;
+
 
     return 0;
 }
