@@ -69,6 +69,7 @@ void Graphix::render(){
 }
 
 void Graphix::draw_line(LineSegment line){
+    if(line.is_nan()) return;
     glBegin(GL_LINES);
         glVertex2f(line.start_pt().x, line.start_pt().y);
         glVertex2f(line.end_pt().x, line.end_pt().y);
@@ -95,13 +96,12 @@ Graphix::Graphix(std::mutex& mtx):m_mutex(mtx){
     if (!glfwInit())
         exit(EXIT_FAILURE);
     
-    window = glfwCreateWindow(WIN_HEIGHT, WIN_HEIGHT, WIN_NAME, NULL, NULL);
+    window = glfwCreateWindow(WIN_BREADTH, WIN_HEIGHT, WIN_NAME, NULL, NULL);
     if (!window){
         glfwTerminate();
         exit(EXIT_FAILURE);
     }
 
-    render_wait_flag = false;
 
     // Set common callbacks
     glfwMakeContextCurrent(window);
@@ -117,12 +117,25 @@ Graphix::Graphix(std::mutex& mtx):m_mutex(mtx){
     glfwGetFramebufferSize(window, &width, &height);
     ratio = width / (float) height;
 
-    glClearColor(BG_COLOR, BG_ALPHA);
+    clear();
+    // glClearColor(BG_COLOR, BG_ALPHA);
     glViewport(0, 0, width, height);
     glClear(GL_COLOR_BUFFER_BIT);
+    glColor3f(DRAW_COLOR);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(WIN_DIM_NEG_X, WIN_DIM_POS_X, WIN_DIM_NEG_Y, WIN_DIM_POS_Y, 1.f,-1.f);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
+    render_wait_flag = true;
+    render();
+    render_wait_flag = false;    
+
 }
+
+void Graphix::clear(){
+    glClearColor(BG_COLOR, BG_ALPHA);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+

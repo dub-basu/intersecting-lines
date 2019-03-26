@@ -37,6 +37,7 @@ class Graphix{
         void draw_dashed_line(LineSegment line);
         void loopie();
         void render();
+        void clear();
     private:
         static void mouse_button_callback(GLFWwindow* window, int button, int action, int mode);
         static void cursor_position_callback(GLFWwindow* window, double x_pos, double y_pos);

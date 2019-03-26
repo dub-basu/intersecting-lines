@@ -135,3 +135,7 @@ Point LineSegment::y_projection(Point pt) const{
         return this -> contains_point(retPt) ? retPt : NAN_POINT ;
     }
 }
+
+bool LineSegment::is_nan(){
+    return(start_point.is_nan() || end_point.is_nan());
+}

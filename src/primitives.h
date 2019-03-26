@@ -39,6 +39,7 @@ class LineSegment{
         //len length();
         Point start_pt();
         Point end_pt();
+        bool is_nan();
 };
 
 #endif
