@@ -1,9 +1,7 @@
-//
-// Created by kaustubh0x77 on 23/3/19.
-//
+#ifndef STATUS
+#define STATUS
 
 template <class T>
-//typedef int T
 class Status {
 private:
     /**
@@ -36,3 +34,5 @@ public:
     T* searchL(T);
     T* searchR(T);
 };
+
+#endif

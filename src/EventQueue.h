@@ -1,3 +1,5 @@
+#ifndef EVENT_QUEUE
+#define EVENT_QUEUE
 #include<vector>
 
 using namespace std;
@@ -34,3 +36,5 @@ public:
 	int size();
 
 };
+
+#endif

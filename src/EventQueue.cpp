@@ -1,11 +1,23 @@
 #include<vector>
 #include <iostream>
 #include "EventQueue.h"
+#include "LineSegmentIntersector.h"
 using namespace std;
 
 /**
 *minHeapify to correct the event queue.
 */
+
+//
+//template <class T>
+//void swap_(T& t12345, T& t2){
+//	cout << "swappy" << "\n";
+//	T& temp = t12345;
+//	t12345 = t2;
+//	t2 = temp;
+//}
+
+
 template <class T>
 void EventQueue<T>::minHeapify(int i) {
 	int left = 2 * i + 1;
@@ -78,4 +90,8 @@ template <class T>
 int EventQueue<T>::size(){
 	return events.size();
 }
+
+// I have no fucking clue why this is needed,
+// IT JUST WORKS
+template class EventQueue<LineSegmentIntersector::LSIPoint>;
 

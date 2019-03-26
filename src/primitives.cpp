@@ -2,6 +2,7 @@
 #include<limits>
 #include<iostream>
 #include<cmath>
+#include<map>
 
 Point::Point(){
     x = 0;
@@ -18,11 +19,34 @@ bool Point::operator==(const Point &p2) {
     return this -> x == p2.x && this -> y == p2.y;
 }
 
+bool Point::operator!=(const Point &p2) {
+    return this->x != p2.x || this->y != p2.y;
+}
+
+bool Point::operator< (const Point& right) const{
+    if(x < right.x)
+        return true;
+    else if( x > right.x)
+        return false;
+    else
+        return y < right.y;
+}
+//
+//bool map<Point>::operator<(const Point p1, const Point p2){
+//    if(p1.x < p2.x)
+//        return true;
+//    else if( p1,x > p2.x)
+//        return false;
+//    else
+//        return p1.y < p2.y;
+//}
+
+
 bool Point::is_nan(){
     return(std::isnan(x) || std::isnan(y));
 }
 
-bool LineSegment::contains_point(Point pt){
+bool LineSegment::contains_point(Point pt) const{
     coordinate slope_diff = (pt.x - start_point.x) * (pt.y - end_point.y)
                           - (pt.x - end_point.x) * (pt.y - start_point.y);
 
@@ -66,6 +90,11 @@ Point LineSegment::intersects_at(LineSegment ls){
 
 }
 
+LineSegment::LineSegment(){
+    this->start_point = NAN_POINT;
+    this->end_point = NAN_POINT;
+}
+
 LineSegment::LineSegment(Point p1, Point p2){
     if(p1.x < p2.x){
         start_point = p1;
@@ -79,6 +108,12 @@ LineSegment::LineSegment(Point p1, Point p2){
     }
 }
 
+
+bool LineSegment::operator==(const LineSegment &l2) {
+    return (this->start_point == l2.start_point && this->end_point == l2.end_point);
+}
+
+
 Point LineSegment::start_pt(){
     return(start_point);
 }
@@ -87,7 +122,7 @@ Point LineSegment::end_pt(){
     return(end_point);
 }
 
-Point LineSegment::y_projection(Point pt){
+Point LineSegment::y_projection(Point pt) const{
     if(end_point.y == start_point.y){
         return NAN_POINT;
     }
