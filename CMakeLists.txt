@@ -19,6 +19,7 @@ add_executable(line-intersection
                 ./src/graphix.cpp
                 ./src/Status.cpp
                 ./src/LineSegmentIntersector.cpp
+                ./src/EventQueue.cpp
             )
 
 target_link_libraries(line-intersection glfw ${OPENGL_LIBRARY})

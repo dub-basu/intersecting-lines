@@ -5,8 +5,6 @@
 #include <mutex>
 #include "graphix.h"
 #include "primitives.h"
-
-#include "primitives.h"
 #include "EventQueue.h"
 #include "LineSegmentIntersector.h"
 #include "Status.h"
@@ -22,15 +20,15 @@ int main(int argc, char** argv){
     Graphix gfx(mtx);
     thread t1(init_graphix_class, &gfx);
 
-    Point p1(-50,-50);
-    Point p2(50,50);
+    Point p_1(-50,-50);
+    Point p_2(50,50);
 
     vector<LineSegment> lines;
 
     for(int i=0;i<10;i++){
-        LineSegment l(p1,p2);
-        p1.x += 10;
-        p2.x -= 10;
+        LineSegment l(p_1,p_2);
+        p_1.x += 10;
+        p_2.x -= 10;
         lines.push_back(l);
     }
 
