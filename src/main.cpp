@@ -26,18 +26,37 @@ int main(){
 //     s.inorder();
 //     cout << *(s.searchR(1));
 
-    Point p1(1,1), p2(3,3);
-    Point p3(2,1), p4(1,2);
+////===============
+
+
+
+    Point p1(-5,-5), p2(5,5);
     LineSegment l1(p1,p2);
+
+    Point p3(-4,4), p4(6,-6);
     LineSegment l2(p3,p4);
+
+    Point p5(0,10), p6(0,1);
+    LineSegment l3(p5,p6);
+
+    Point i = l1.intersects_at(l2);
+    cout << i.x << " " << i.y << "\n";
+    cout << i.is_nan();
+    vector<LineSegment> inp {l1,l2,l3};
 //
-    vector<LineSegment> inp {l1,l2};
-
-    LineSegmentIntersector lsi(inp);
-
-    LSIResult res = lsi.computeIntersections();
-    cout << res.begin() -> first.x << " " << res.begin() -> first.y << endl;
-
+//    LineSegmentIntersector lsi(inp);
+//
+//    LSIResult res = lsi.computeIntersections();
+//    cout<<res.size()<<endl;
+//    //cout << res.begin() -> first.x << " " << res.begin() -> first.y << endl;
+//    for (auto it : res){
+//        cout << "Point : (" << it.first.x << " ," << it.first.y << ")\n";
+////        cout<<"Segments-{";
+////        for (it_seg : it.second)
+////        {
+////            cout<<
+////        }
+//    }
 
     return 0;
 }

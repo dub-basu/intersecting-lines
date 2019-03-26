@@ -112,7 +112,7 @@ LineSegmentIntersector::LineSegmentIntersector(std::vector<LineSegment> &i, bool
         LSISegment lsi_it(it);
         Point p1 = it.start_pt();
         Point p2 = it.end_pt();
-        cout << eventQueue.size();
+        //cout << eventQueue.size();
         EventType p1Type, p2Type;
 
         if(p1.y > p2.y ){
@@ -155,7 +155,7 @@ LSIResult LineSegmentIntersector::computeIntersections() {
         lower.clear();
         containing.clear();
 
-        std::cout << "event queue size = " << eventQueue.size() << std::endl;
+        //std::cout << "event queue size = " << eventQueue.size() << std::endl;
 
         Point curr = eventQueue.peek().p;
         handleEventPoint(curr);
@@ -171,7 +171,7 @@ void LineSegmentIntersector::handleEventPoint(Point curr) {
 
     while(eventQueue.size() > 0 && eventQueue.peek().p == curr){
 
-        std::cout << "curr = " << curr.x << " " << curr.y << std::endl;
+        //std::cout << "curr = " << curr.x << " " << curr.y << std::endl;
 
         LSIPoint toInsert = eventQueue.extractMin();
         if(toInsert.et ==  UPPER){
@@ -252,6 +252,7 @@ void LineSegmentIntersector::handleEventPoint(Point curr) {
 
     if (uc.size() == 0){
         // Fake vertical line insert in status;
+        //cout << "Test1\n";
         Point fakeLineLower = Point(curr.x, curr.y + DELTA);
         LineSegment fakeLineSegment(curr,fakeLineLower);
         LSISegment fakeLSISegment(fakeLineSegment);
@@ -263,8 +264,6 @@ void LineSegmentIntersector::handleEventPoint(Point curr) {
         status.remove(fakeLSISegment);
 
         findNewEvent(sl,sr,curr);
-
-
     }
     else{
         LSISegment sl = *(uc.begin());
