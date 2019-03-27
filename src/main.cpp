@@ -39,24 +39,20 @@ int main(){
     Point p5(0,10), p6(0,1);
     LineSegment l3(p5,p6);
 
-    Point i = l1.intersects_at(l2);
-    cout << i.x << " " << i.y << "\n";
-    cout << i.is_nan();
-    vector<LineSegment> inp {l1,l2,l3};
-//
-//    LineSegmentIntersector lsi(inp);
-//
-//    LSIResult res = lsi.computeIntersections();
-//    cout<<res.size()<<endl;
-//    //cout << res.begin() -> first.x << " " << res.begin() -> first.y << endl;
-//    for (auto it : res){
-//        cout << "Point : (" << it.first.x << " ," << it.first.y << ")\n";
-////        cout<<"Segments-{";
-////        for (it_seg : it.second)
-////        {
-////            cout<<
-////        }
-//    }
+    Point p7(-3,-2), p8(-5,-6);
+    LineSegment l4(p7,p4);
+
+    Point p9(4,11), p10(4,-11);
+    LineSegment l5(p9,p10);
+
+    vector<LineSegment> inp {l1,l2,l3,l4,l5};
+
+    LineSegmentIntersector lsi(inp);
+
+    LSIResult res = lsi.computeIntersections();
+    cout<<res.size()<<endl;
+
+
 
     return 0;
 }

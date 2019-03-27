@@ -29,6 +29,15 @@ typename Status<T>::Node* Status<T>::newNode(T key){
 	return node;
 }
 
+//template<class T>
+//typename Status<T>::Node* Status<T>::newNode(Node *ans){
+//	Node* node = (Node *)malloc(sizeof(Node));
+//	node->left = node->right = NULL;
+//	node->height = 1;//!< Added at leaf initially.
+//	node->key = ans->key;
+//	node->rightmost=ans->key;
+//	return node;
+//}
 /**
 * Performs right rotation
 */
@@ -215,7 +224,7 @@ T* Status<T>::searchL(T key){
     if(curr->key == key)
     	return NULL;
 
-    Node *ans = curr;
+    Node *ans = newNode(curr->key);
     curr = root;
 
 
@@ -243,7 +252,7 @@ T* Status<T>::searchR(T key)
 	if (curr->key == key)
 		return NULL;
 
-	Node *ans = curr;
+	Node *ans = newNode(curr->key);
 	curr = root;
     while(curr != NULL)
     {
@@ -254,7 +263,8 @@ T* Status<T>::searchR(T key)
         else
             curr=curr->right;
     }
-    return &(ans->key);
+	auto toReturn = &(ans->key);
+    return toReturn;
 }
 
 template <class T>

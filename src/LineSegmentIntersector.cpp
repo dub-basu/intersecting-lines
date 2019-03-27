@@ -86,7 +86,7 @@ LineSegmentIntersector::LSISegment::LSISegment(LineSegment l){
 /* PENDING */
 bool LineSegmentIntersector::LSISegment::operator<(const LineSegmentIntersector::LSISegment& lsi) const {
     return this->ls.y_projection(LineSegmentIntersector::lastReference).x
-                    < lsi.ls.y_projection(LineSegmentIntersector::lastReference).x;
+           < lsi.ls.y_projection(LineSegmentIntersector::lastReference).x;
 }
 
 bool LineSegmentIntersector::LSISegment::operator>(const LineSegmentIntersector::LSISegment& lsi) const {
@@ -195,16 +195,15 @@ void LineSegmentIntersector::handleEventPoint(Point curr) {
             //std::cout << "containing size = " << containing.size() << std::endl;
 
             LSISegment* toAdd = lastContaining;
-            while( toAdd != nullptr && (toAdd->ls.contains_point(curr))) {
+            while( toAdd != NULL && (toAdd->ls.contains_point(curr))) {
                 if (toAdd->ls.start_pt() != curr && toAdd->ls.end_pt() != curr){
                     containing.insert(*toAdd);
                 }
                 toAdd = status.searchL(*toAdd);
-
             }
 
             toAdd = lastContaining;
-            while( toAdd != nullptr && toAdd->ls.contains_point(curr)) {
+            while( toAdd != NULL && toAdd->ls.contains_point(curr)) {
                 if (toAdd->ls.start_pt() != curr && toAdd->ls.end_pt() != curr) {
                     containing.insert(*toAdd);
                 }
@@ -253,14 +252,15 @@ void LineSegmentIntersector::handleEventPoint(Point curr) {
     if (uc.size() == 0){
         // Fake vertical line insert in status;
         //cout << "Test1\n";
-        Point fakeLineLower = Point(curr.x, curr.y + DELTA);
+        Point fakeLineLower = Point(curr.x, curr.y - DELTA);
         LineSegment fakeLineSegment(curr,fakeLineLower);
         LSISegment fakeLSISegment(fakeLineSegment);
         // Get left and right neighbors;
         status.insert(fakeLSISegment);
         LSISegment* sl = status.searchL(fakeLSISegment);
         LSISegment* sr = status.searchR(fakeLSISegment);
-
+        //cout<<sr->ls.start_pt().x<<" "<<sr->ls.start_pt().y<<endl;
+        //cout<<sr->ls.end_pt().x<<" "<<sr->ls.end_pt().y<<endl;
         status.remove(fakeLSISegment);
 
         findNewEvent(sl,sr,curr);
