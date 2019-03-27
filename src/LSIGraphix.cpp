@@ -50,5 +50,11 @@ void LSIGraphix::update_event(Point pt){
     Graphix::clear();
     draw_init_lines();
     draw_sweep_line();
-    // draw_event_point();
+    draw_event_point();
+}
+
+void LSIGraphix::draw_event_point(){
+    glBegin(GL_POINTS);
+      glVertex2f(event_pt.x,event_pt.y);
+    glEnd();
 }

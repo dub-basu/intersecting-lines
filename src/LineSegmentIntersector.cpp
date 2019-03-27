@@ -107,7 +107,8 @@ bool LineSegmentIntersector::LSISegment::operator <=(const LineSegmentIntersecto
 
 
 
-LineSegmentIntersector::LineSegmentIntersector(std::vector<LineSegment> &i, bool visualize) : input(i){
+LineSegmentIntersector::LineSegmentIntersector(std::vector<LineSegment> &i, LSIGraphix& gfx) : input(i), lsiGfx(gfx){
+    lsiGfx.init_lines(i);
     for (auto it : input){
         LSISegment lsi_it(it);
         Point p1 = it.start_pt();
@@ -158,8 +159,9 @@ LSIResult LineSegmentIntersector::computeIntersections() {
         std::cout << "event queue size = " << eventQueue.size() << std::endl;
 
         Point curr = eventQueue.peek().p;
+        lsiGfx.update_event(curr);
         handleEventPoint(curr);
-
+        lsiGfx.render();
     }
 
     return result;

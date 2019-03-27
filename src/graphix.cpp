@@ -6,16 +6,17 @@
 using namespace std;
 
 void Graphix::cursor_position_callback(GLFWwindow* window, double x_pos, double y_pos){
-    // cout << "x: " << x_pos << "\t" << "y: " << y_pos << endl;
-    // glfwWaitEvents();
+    glfwPostEmptyEvent();
 }
 
 void Graphix::mouse_button_callback(GLFWwindow* window, int button, int action, int mode){
     if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS){
         cout << "left button pressed" << endl;
+        glfwPostEmptyEvent();
     }
     else if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE){
         cout << "left button released" << endl;
+        glfwPostEmptyEvent();
     }
 }
 
@@ -24,9 +25,7 @@ void Graphix::error_callback(int error, const char* description){
 }
 
 void Graphix::window_refresh_callback(GLFWwindow* window){
-    // glfwWaitEvents();
-    // cout << "window refresh" << endl;
-
+    glfwPostEmptyEvent();
 }
 
 void Graphix::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods){
@@ -40,12 +39,12 @@ void Graphix::key_callback(GLFWwindow* window, int key, int scancode, int action
         glfwPostEmptyEvent();
     }
     else{
-        // glfwWaitEvents();
+        glfwPostEmptyEvent();
     }
 }
 
 void Graphix::cursor_enter_callback(GLFWwindow* window, int entered){
-    // glfwWaitEvents();
+    glfwPostEmptyEvent();
 }
 
 void Graphix::draw_dashed_line(LineSegment line){
@@ -122,6 +121,7 @@ Graphix::Graphix(std::mutex& mtx):m_mutex(mtx){
     glViewport(0, 0, width, height);
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(DRAW_COLOR);
+    glPointSize(POINT_SIZE);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(WIN_DIM_NEG_X, WIN_DIM_POS_X, WIN_DIM_NEG_Y, WIN_DIM_POS_Y, 1.f,-1.f);

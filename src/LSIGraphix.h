@@ -13,11 +13,12 @@ class LSIGraphix: public Graphix {
         LineSegment sweep_line;
         void draw_init_lines();
         void shift_sweep_line(Point);
+        void draw_sweep_line();
+        void draw_event_point();
     public:
         LSIGraphix(std::mutex& mtx);
         void init_lines(std::vector<LineSegment> lines);
         void update_event(Point);
-        void draw_sweep_line();
 };
 
 #endif

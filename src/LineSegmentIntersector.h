@@ -8,6 +8,7 @@
 #include "EventQueue.h"
 #include "primitives.h"
 #include "Status.h"
+#include "LSIGraphix.h"
 
 typedef std::map< Point, std::list<LineSegment> > LSIResult;
 
@@ -62,8 +63,9 @@ private:
     void findNewEvent(LSISegment*, LSISegment*, Point);
 
 public:
+    LSIGraphix& lsiGfx;
     static Point lastReference;
-    LineSegmentIntersector(std::vector<LineSegment>& , bool visualize = true);
+    LineSegmentIntersector(std::vector<LineSegment>& , LSIGraphix&);
     LSIResult computeIntersections();
 
 };

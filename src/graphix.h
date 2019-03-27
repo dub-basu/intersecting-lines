@@ -15,7 +15,7 @@
 #define WIN_DIM_POS_Y 100
 
 #define WIN_NAME "Graphix"
-#define POINT_SIZE 1.0
+#define POINT_SIZE 8.0
 
 #endif
 

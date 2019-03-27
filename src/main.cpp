@@ -21,45 +21,47 @@ int main(int argc, char** argv){
     LSIGraphix gfx(mtx);
     thread t1(init_graphix_class, &gfx);
 
-    Point p_1(-50,-50);
-    Point p_2(50,50);
+    // Point p_1(-50,-50);
+    // Point p_2(50,50);
 
-    vector<LineSegment> lines;
+    // vector<LineSegment> lines;
 
-    for(int i=0;i<10;i++){
-        LineSegment l(p_1,p_2);
-        p_1.x += 10;
-        p_2.x -= 10;
-        lines.push_back(l);
-    }
+    // for(int i=0;i<10;i++){
+    //     LineSegment l(p_1,p_2);
+    //     p_1.x += 10;
+    //     p_2.x -= 10;
+    //     lines.push_back(l);
+    // }
 
-    cout << endl;
-    cout << endl;
-    for(int i=0;i<lines.size();i++){
-        cout << "start: (" << lines[i].start_pt().x << "," << lines[i].start_pt().y << ") | end point: (";
-        cout << lines[i].end_pt().x << "," << lines[i].end_pt().y << ")" << endl;
-    }
+    // cout << endl;
+    // cout << endl;
+    // for(int i=0;i<lines.size();i++){
+    //     cout << "start: (" << lines[i].start_pt().x << "," << lines[i].start_pt().y << ") | end point: (";
+    //     cout << lines[i].end_pt().x << "," << lines[i].end_pt().y << ")" << endl;
+    //     gfx.draw_line(lines[i]);
+    //     gfx.render();
+    // }
 
-    gfx.init_lines(lines);
-    gfx.render();
+    // gfx.init_lines(lines);
+    // gfx.render();
 
-    Point p_new(12,5);
-    gfx.update_event(p_new);
-    gfx.render();
+    // Point p_new(12,5);
+    // gfx.update_event(p_new);
+    // gfx.render();
 
-    p_new.y = 3;
-    gfx.update_event(p_new);
-    gfx.render();
+    // p_new.y = 3;
+    // gfx.update_event(p_new);
+    // gfx.render();
 
-    p_new.y = 0;;
-    gfx.update_event(p_new);
-    gfx.render();
+    // p_new.y = 0;;
+    // gfx.update_event(p_new);
+    // gfx.render();
 
-    p_new.y = -6;
-    gfx.update_event(p_new);
-    gfx.render();
+    // p_new.y = -6;
+    // gfx.update_event(p_new);
+    // gfx.render();
 
-    t1.join();
+    // t1.join();
 
 //    Point pt1(23,11);
 //    Point pt2(1,45);
@@ -82,18 +84,18 @@ int main(int argc, char** argv){
 //     s.insert(6);
 //     s.inorder();
 
-//     Point p1(1,1), p2(3,3);
-//     Point p3(2,1), p4(1,2);
-//     LineSegment l1(p1,p2);
-//     LineSegment l2(p3,p4);
-// //
-//     vector<LineSegment> inp {l1,l2};
+    Point p1(1,1), p2(3,3);
+    Point p3(2,1), p4(1,2);
+    LineSegment l1(p1,p2);
+    LineSegment l2(p3,p4);
 
-//     LineSegmentIntersector lsi(inp);
+    vector<LineSegment> inp {l1,l2};
 
-//     LSIResult res = lsi.computeIntersections();
-//     cout << res.begin() -> first.x << " " << res.begin() -> first.y << endl;
+    LineSegmentIntersector lsi(inp, gfx);
 
+    LSIResult res = lsi.computeIntersections();
+    cout << res.begin() -> first.x << " " << res.begin() -> first.y << endl;
 
+    t1.join();
     return 0;
 }
