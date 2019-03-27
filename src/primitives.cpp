@@ -15,6 +15,11 @@ Point::Point(coordinate x_in, coordinate y_in){
     y = y_in;
 }
 
+Point& Point::operator= (const Point& op){
+    this->x = op.x;
+    this->y = op.y;
+}
+
 bool Point::operator==(const Point &p2) {
     // TODO: Floating point errors handle? Some epsilon
     return this -> x == p2.x && this -> y == p2.y;
@@ -114,12 +119,16 @@ bool LineSegment::operator==(const LineSegment &l2) {
     return (this->start_point == l2.start_point && this->end_point == l2.end_point);
 }
 
+std::ostream& operator<<(std::ostream& os, const Point& pt){
+    os << "(" << pt.x << ", " << pt.y << ")";
+    return os;
+}
 
-Point LineSegment::start_pt(){
+Point LineSegment::start_pt() const{
     return(start_point);
 }
 
-Point LineSegment::end_pt(){
+Point LineSegment::end_pt() const {
     return(end_point);
 }
 
@@ -135,6 +144,12 @@ Point LineSegment::y_projection(Point pt) const{
         return this -> contains_point(retPt) ? retPt : NAN_POINT ;
     }
 }
+
+std::ostream& operator<<(std::ostream& os, const LineSegment& l){
+    os << "[" << l.start_point << ", " << l.end_point << "]";
+    return os;
+}
+
 
 bool LineSegment::is_nan(){
     return(start_point.is_nan() || end_point.is_nan());

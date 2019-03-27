@@ -18,10 +18,13 @@ class Point{
         coordinate y;
         Point();
         Point(coordinate x_in, coordinate y_in);
+        Point& operator= (const Point& op);
         bool operator== (const Point& p2);
         bool operator!= (const Point& p2);
         bool is_nan();
         bool operator< (const Point& right) const;
+        friend std::ostream& operator<<(std::ostream& os, const Point& pt);
+
 //        bool map<Point> operator<(const Point, const Point);
 };
 
@@ -37,8 +40,9 @@ class LineSegment{
         Point y_projection(Point pt) const;
         bool operator== (const LineSegment& l2);
         //len length();
-        Point start_pt();
-        Point end_pt();
+        Point start_pt() const ;
+        Point end_pt() const ;
+        friend std::ostream& operator<<(std::ostream& os, const LineSegment& l);
         bool is_nan();
 };
 

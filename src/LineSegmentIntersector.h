@@ -16,7 +16,6 @@ class LineSegmentIntersector {
 private:
     enum EventType {UPPER,LOWER,CONTAINING};
 
-
     class LSISegment {
     private:
     public:
@@ -29,6 +28,7 @@ private:
         LSISegment();
         LSISegment(LineSegment);
         LSISegment& operator=(LSISegment& );
+        friend std::ostream& operator<<(std::ostream& os, const LSISegment& lsiSegment);
         bool operator==(LSISegment& );
     };
 
@@ -45,6 +45,8 @@ private:
         LSIPoint& operator= (LSIPoint&);
         LSIPoint(Point, LSISegment, EventType);
     };
+
+    friend std::ostream& operator<<(std::ostream& os, const LSISegment& lsiSegment);
 
     LSIResult result;
     std::set<LSISegment> upper;

@@ -199,7 +199,7 @@ template <class T>
 void Status<T>::__inorder(typename Status<T>::Node *n){
 	if (n != NULL){
 		__inorder(n->left);
-//		cout << n->key << " ";
+		cout << n->key << " ";
 		__inorder(n->right);
 	}
 }
@@ -215,7 +215,7 @@ T* Status<T>::searchL(T key){
     if(curr->key == key)
     	return NULL;
 
-    Node *ans = curr;
+    Node *ans = newNode(curr->key);
     curr = root;
 
 
@@ -243,7 +243,7 @@ T* Status<T>::searchR(T key)
 	if (curr->key == key)
 		return NULL;
 
-	Node *ans = curr;
+	Node *ans = newNode(curr->key);
 	curr = root;
     while(curr != NULL)
     {

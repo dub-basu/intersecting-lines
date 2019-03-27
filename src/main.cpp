@@ -1,4 +1,3 @@
-#include<intersecting-lines/components.h>
 #include<iostream>
 #include<vector>
 #include<thread>
@@ -21,80 +20,49 @@ int main(int argc, char** argv){
     LSIGraphix gfx(mtx);
     thread t1(init_graphix_class, &gfx);
 
-    // Point p_1(-50,-50);
-    // Point p_2(50,50);
-
-    // vector<LineSegment> lines;
-
-    // for(int i=0;i<10;i++){
-    //     LineSegment l(p_1,p_2);
-    //     p_1.x += 10;
-    //     p_2.x -= 10;
-    //     lines.push_back(l);
-    // }
-
-    // cout << endl;
-    // cout << endl;
-    // for(int i=0;i<lines.size();i++){
-    //     cout << "start: (" << lines[i].start_pt().x << "," << lines[i].start_pt().y << ") | end point: (";
-    //     cout << lines[i].end_pt().x << "," << lines[i].end_pt().y << ")" << endl;
-    //     gfx.draw_line(lines[i]);
-    //     gfx.render();
-    // }
-
-    // gfx.init_lines(lines);
-    // gfx.render();
-
-    // Point p_new(12,5);
-    // gfx.update_event(p_new);
-    // gfx.render();
-
-    // p_new.y = 3;
-    // gfx.update_event(p_new);
-    // gfx.render();
-
-    // p_new.y = 0;;
-    // gfx.update_event(p_new);
-    // gfx.render();
-
-    // p_new.y = -6;
-    // gfx.update_event(p_new);
-    // gfx.render();
-
-    // t1.join();
-
-//    Point pt1(23,11);
-//    Point pt2(1,45);
-//    cout << pt1.x << " " << pt1.y << endl;
-//
-//    LineSegment l1(pt2, pt1);
-//    cout << l1.start_pt().x << " " << l1.start_pt().y << endl;
-//    cout << l1.end_pt().x << " " << l1.end_pt().y;
-//     Status<int> s;
-//     s.insert(100);
-//     s.insert(101);
-//     s.insert(102);
-//     s.insert(103);
-//     s.insert(104);
-//     s.insert(1);
-//     s.insert(2);
-//     s.insert(3);
-//     s.insert(4);
-//     s.insert(5);
-//     s.insert(6);
-//     s.inorder();
-
-    Point p1(1,1), p2(3,3);
-    Point p3(2,1), p4(1,2);
+    Point p1(-5,-5), p2(5,5);
     LineSegment l1(p1,p2);
+
+    Point p3(-4,4), p4(6,-6);
     LineSegment l2(p3,p4);
 
-    vector<LineSegment> inp {l1,l2};
+    Point p5(0,6), p6(0,1.5);
+    LineSegment l3(p5,p6);
 
+    Point p7(3,8), p8(3,-10);
+    LineSegment l4(p7,p8);
+
+    Point p9(0,1), p10(0,-5);
+    LineSegment l5(p9,p10);
+
+    //Point p11(1,9),p12(2,9),p13(4,10);
+    Point p11(0,9.5),p12(2,9),p13(4,10);
+    LineSegment l6(p7,p11), l7(p7,p12), l8(p7,p13);
+
+    Point p14(1,5), p15(4,8);
+    LineSegment l9(p14,p15);
+//
+    Point p16(1,6), p17(4,9);
+    LineSegment l10(p16,p17);
+
+    Point p18(1,-11),p19(2,-11);
+    LineSegment l11(p18,p8), l12(p19,p8);
+
+    vector<LineSegment> inp {l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12};
+//    vector<LineSegment> inp {l1,l2};
     LineSegmentIntersector lsi(inp, gfx);
 
     LSIResult res = lsi.computeIntersections();
-    cout << res.begin() -> first.x << " " << res.begin() -> first.y << endl;
+    cout << "RESULT:\n";
+    //cout << res.size();
+
+    for (auto i : res){
+        cout << i.first << " : ";
+        cout << i.second.size() << "\n";
+        for (auto j : i.second){
+            cout << "\t" << j << "\n";
+        }
+    }
 
     t1.join();
     return 0;
