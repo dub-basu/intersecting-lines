@@ -72,5 +72,4 @@ public:
 
 };
 
-
-#endif //INTERSECTING_LINES_LINESEGMENTINTERSECTOR_H
+#endif

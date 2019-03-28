@@ -1,9 +1,6 @@
-#include <bits/stdc++.h>
-//#include <primitives.h>
 #include "Status.h"
 #include "LineSegmentIntersector.h"
 using namespace std;
-
 
 /**
 * Get height of the current node.

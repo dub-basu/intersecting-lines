@@ -1,7 +1,4 @@
-#include<GLFW/glfw3.h> 
-#include<iostream>
 #include "graphix.h"
-// #include<mutex>
 
 using namespace std;
 
@@ -11,11 +8,11 @@ void Graphix::cursor_position_callback(GLFWwindow* window, double x_pos, double 
 
 void Graphix::mouse_button_callback(GLFWwindow* window, int button, int action, int mode){
     if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS){
-        cout << "left button pressed" << endl;
+        // cout << "left button pressed" << endl;
         glfwPostEmptyEvent();
     }
     else if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE){
-        cout << "left button released" << endl;
+        // cout << "left button released" << endl;
         glfwPostEmptyEvent();
     }
 }
@@ -32,7 +29,7 @@ void Graphix::key_callback(GLFWwindow* window, int key, int scancode, int action
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GL_TRUE);
     else if(key == GLFW_KEY_Q && action == GLFW_PRESS){
-        cout << "entered Q" << endl;
+        // cout << "entered Q" << endl;
     }
     else if(key == GLFW_KEY_SPACE && action == GLFW_PRESS){
         render_wait_flag = true;

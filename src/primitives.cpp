@@ -1,9 +1,4 @@
-#include<math.h>
 #include "primitives.h"
-#include<limits>
-#include<iostream>
-#include<cmath>
-#include<map>
 
 Point::Point(){
     x = 0;

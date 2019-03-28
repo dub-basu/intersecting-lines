@@ -2,11 +2,7 @@
 #include<vector>
 #include<thread>
 #include <mutex>
-#include "graphix.h"
-#include "primitives.h"
-#include "EventQueue.h"
 #include "LineSegmentIntersector.h"
-#include "Status.h"
 #include "LSIGraphix.h"
 using namespace std;
 

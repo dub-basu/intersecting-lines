@@ -3,6 +3,7 @@
 
 #define SWEEP_LINE_COLOR 0.0, 1.0, 1.0
 
+#include<vector>
 #include "graphix.h"
 #include "primitives.h"
 

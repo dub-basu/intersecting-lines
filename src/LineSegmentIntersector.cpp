@@ -1,7 +1,5 @@
-#include "LineSegmentIntersector.h"
-#include "EventQueue.h"
-#include "primitives.h"
 #include<iostream>
+#include "LineSegmentIntersector.h"
 
 using namespace std;
 

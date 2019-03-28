@@ -22,10 +22,9 @@
 #ifndef GRAPHIX
 #define GRAPHIX
 
-#include "primitives.h"
-#include<vector>
 #include<GLFW/glfw3.h> 
 #include<mutex>
+#include "primitives.h"
 
 class Graphix{
     public:

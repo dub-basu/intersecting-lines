@@ -1,5 +1,3 @@
-#include<vector>
-#include <iostream>
 #include "EventQueue.h"
 #include "LineSegmentIntersector.h"
 using namespace std;
