@@ -221,7 +221,7 @@ LSIResult LineSegmentIntersector::computeIntersections() {
 
 void LineSegmentIntersector::handleEventPoint(Point curr) {
     cout << curr << "\n";
-
+    LSISegment* lastContaining = NULL;
     Point temp = lastReference;
     lastReference = curr;
     while(eventQueue.size() > 0 && eventQueue.peek().p == curr) {
@@ -239,6 +239,7 @@ void LineSegmentIntersector::handleEventPoint(Point curr) {
             if(curr != candidate.start_pt() && curr != candidate.end_pt()) {
                 containing.insert(toInsert.lsiSegment);
                 cout << "\t" << toInsert.lsiSegment.ls;
+                lastContaining = &(toInsert.lsiSegment);
                 cout << "CONTAINING SIZE = " << containing.size() << "\n";
             }
         } else {
@@ -246,29 +247,29 @@ void LineSegmentIntersector::handleEventPoint(Point curr) {
         }
     }
 
-//    if (containing.size() > 0){
-//        //std::cout << "containing size = " << containing.size() << std::endl;
-//
-//        LSISegment* toAdd = lastContaining;
-//        while( toAdd != NULL && (toAdd->ls.contains_point(curr))) {
-//        //    cout << "L";
-//        //    if (toAdd->ls.start_pt() != curr && toAdd->ls.end_pt() != curr){
-//                containing.insert(*toAdd);
-//         //   }
-//            toAdd = status.searchL(*toAdd);
-//        }
-//
-//        toAdd = lastContaining;
-//        while( toAdd != NULL && toAdd->ls.contains_point(curr)) {
-//            //   cout << "R";
-//            // if (toAdd->ls.start_pt() != curr && toAdd->ls.end_pt() != curr) {
-//                containing.insert(*toAdd);
-//            // }
-//            toAdd = status.searchR(*toAdd);
-//        }
-//
-//        cout << "\tFINAL CONTAINING " << containing.size() << "\n";
-//    }
+    if (containing.size() > 0){
+        //std::cout << "containing size = " << containing.size() << std::endl;
+
+        LSISegment* toAdd = lastContaining;
+        while( toAdd != NULL && (toAdd->ls.contains_point(curr))) {
+        //    cout << "L";
+        //    if (toAdd->ls.start_pt() != curr && toAdd->ls.end_pt() != curr){
+                containing.insert(*toAdd);
+         //   }
+            toAdd = status.searchL(*toAdd);
+        }
+
+        toAdd = lastContaining;
+        while( toAdd != NULL && toAdd->ls.contains_point(curr)) {
+            //   cout << "R";
+            // if (toAdd->ls.start_pt() != curr && toAdd->ls.end_pt() != curr) {
+                containing.insert(*toAdd);
+            // }
+            toAdd = status.searchR(*toAdd);
+        }
+
+        cout << "\tFINAL CONTAINING " << containing.size() << "\n";
+    }
 
     // For reordering efficiently
     lastReference = temp;

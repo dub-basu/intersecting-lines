@@ -48,7 +48,10 @@ int main(int argc, char** argv){
     Point p18(1,-11),p19(2,-11);
     LineSegment l11(p18,p8), l12(p19,p8);
 
-    vector<LineSegment> inp {l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12};
+    Point p20(-3,3), p21(-4,2);
+    LineSegment l13(p20,p21);
+
+    vector<LineSegment> inp {l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13};
 //    vector<LineSegment> inp {l1,l2};
     LineSegmentIntersector lsi(inp, gfx);
 
