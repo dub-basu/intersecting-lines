@@ -1,6 +1,6 @@
-#include<iostream>
-#include<vector>
-#include<thread>
+#include <iostream>
+#include <vector>
+#include <thread>
 #include <mutex>
 #include "LineSegmentIntersector.h"
 #include "LSIGraphix.h"

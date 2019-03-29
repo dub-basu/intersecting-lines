@@ -1,0 +1,79 @@
+\hypertarget{classEventQueue}{}\section{Event\+Queue$<$ T $>$ Class Template Reference}
+\label{classEventQueue}\index{Event\+Queue$<$ T $>$@{Event\+Queue$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Event\+Queue.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+T \hyperlink{classEventQueue_aa2f631077b7f200f65fb87bd3bb60f71}{extract\+Min} ()
+\item 
+T \hyperlink{classEventQueue_a3e739a353e6ef3fac228a33dd483d730}{peek} ()
+\item 
+void \hyperlink{classEventQueue_a516dc912aae6d1505ed912fc50f7c33a}{insert} (T k)
+\item 
+int \hyperlink{classEventQueue_a0ce7b577678a2d182edcf24fdc91397e}{size} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Event\+Queue$<$ T $>$}
+
+The event queue is a min heap 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & class needs $<$ function and defined \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classEventQueue_aa2f631077b7f200f65fb87bd3bb60f71}\label{classEventQueue_aa2f631077b7f200f65fb87bd3bb60f71}} 
+\index{Event\+Queue@{Event\+Queue}!extract\+Min@{extract\+Min}}
+\index{extract\+Min@{extract\+Min}!Event\+Queue@{Event\+Queue}}
+\subsubsection{\texorpdfstring{extract\+Min()}{extractMin()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T \hyperlink{classEventQueue}{Event\+Queue}$<$ T $>$\+::extract\+Min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Extract the minimum element from the event queue. This also removes the element from queue. \begin{DoxyReturn}{Returns}
+min element in the heap
+\end{DoxyReturn}
+Extract the minimum element from the event queue. This also removes the element from queue. \mbox{\Hypertarget{classEventQueue_a516dc912aae6d1505ed912fc50f7c33a}\label{classEventQueue_a516dc912aae6d1505ed912fc50f7c33a}} 
+\index{Event\+Queue@{Event\+Queue}!insert@{insert}}
+\index{insert@{insert}!Event\+Queue@{Event\+Queue}}
+\subsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classEventQueue}{Event\+Queue}$<$ T $>$\+::insert (\begin{DoxyParamCaption}\item[{T}]{k }\end{DoxyParamCaption})}
+
+Insert a new event in the event queue. 
+\begin{DoxyParams}{Parameters}
+{\em element} & to insert\\
+\hline
+\end{DoxyParams}
+Insert a new event in the event queue. \mbox{\Hypertarget{classEventQueue_a3e739a353e6ef3fac228a33dd483d730}\label{classEventQueue_a3e739a353e6ef3fac228a33dd483d730}} 
+\index{Event\+Queue@{Event\+Queue}!peek@{peek}}
+\index{peek@{peek}!Event\+Queue@{Event\+Queue}}
+\subsubsection{\texorpdfstring{peek()}{peek()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+T \hyperlink{classEventQueue}{Event\+Queue}$<$ T $>$\+::peek (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Only peek at the min element without deleting \mbox{\Hypertarget{classEventQueue_a0ce7b577678a2d182edcf24fdc91397e}\label{classEventQueue_a0ce7b577678a2d182edcf24fdc91397e}} 
+\index{Event\+Queue@{Event\+Queue}!size@{size}}
+\index{size@{size}!Event\+Queue@{Event\+Queue}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+int \hyperlink{classEventQueue}{Event\+Queue}$<$ T $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get size of the heap. \begin{DoxyReturn}{Returns}
+number of elements in the event queue
+\end{DoxyReturn}
+Get size of the heap. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Event\+Queue.\+h\item 
+src/Event\+Queue.\+cpp\end{DoxyCompactItemize}

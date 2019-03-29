@@ -1,0 +1,67 @@
+\hypertarget{classLineSegmentIntersector}{}\section{Line\+Segment\+Intersector Class Reference}
+\label{classLineSegmentIntersector}\index{Line\+Segment\+Intersector@{Line\+Segment\+Intersector}}
+
+
+Collaboration diagram for Line\+Segment\+Intersector\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{classLineSegmentIntersector__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLineSegmentIntersector_abfe17083938ad4ee705fbe7d0051f209}{Line\+Segment\+Intersector} (std\+::vector$<$ \hyperlink{classLineSegment}{Line\+Segment} $>$ \&, \hyperlink{classLSIGraphix}{L\+S\+I\+Graphix} \&)
+\item 
+L\+S\+I\+Result \hyperlink{classLineSegmentIntersector_a261dcce43777e1954e81589ca89529ee}{compute\+Intersections} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_a82113ff9c3ccbf2c276c67a45401430a}\label{classLineSegmentIntersector_a82113ff9c3ccbf2c276c67a45401430a}} 
+\hyperlink{classLSIGraphix}{L\+S\+I\+Graphix} \& {\bfseries lsi\+Gfx}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_a170c7914f53e24387e8e46cedf3a1290}\label{classLineSegmentIntersector_a170c7914f53e24387e8e46cedf3a1290}} 
+static \hyperlink{classPoint}{Point} {\bfseries last\+Reference} = N\+A\+N\+\_\+\+P\+O\+I\+NT
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_ac30b368f45ebad37982a7529f590c24d}\label{classLineSegmentIntersector_ac30b368f45ebad37982a7529f590c24d}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const L\+S\+I\+Segment \&lsi\+Segment)
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_aa1641902c18c0376d0303883d4e759e5}\label{classLineSegmentIntersector_aa1641902c18c0376d0303883d4e759e5}} 
+void {\bfseries swap} (L\+S\+I\+Point \&, L\+S\+I\+Point \&)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLineSegmentIntersector_abfe17083938ad4ee705fbe7d0051f209}\label{classLineSegmentIntersector_abfe17083938ad4ee705fbe7d0051f209}} 
+\index{Line\+Segment\+Intersector@{Line\+Segment\+Intersector}!Line\+Segment\+Intersector@{Line\+Segment\+Intersector}}
+\index{Line\+Segment\+Intersector@{Line\+Segment\+Intersector}!Line\+Segment\+Intersector@{Line\+Segment\+Intersector}}
+\subsubsection{\texorpdfstring{Line\+Segment\+Intersector()}{LineSegmentIntersector()}}
+{\footnotesize\ttfamily Line\+Segment\+Intersector\+::\+Line\+Segment\+Intersector (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classLineSegment}{Line\+Segment} $>$ \&}]{i,  }\item[{\hyperlink{classLSIGraphix}{L\+S\+I\+Graphix} \&}]{l }\end{DoxyParamCaption})}
+
+Pass the set of points and L\+SI Visualizer Object 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLineSegmentIntersector_a261dcce43777e1954e81589ca89529ee}\label{classLineSegmentIntersector_a261dcce43777e1954e81589ca89529ee}} 
+\index{Line\+Segment\+Intersector@{Line\+Segment\+Intersector}!compute\+Intersections@{compute\+Intersections}}
+\index{compute\+Intersections@{compute\+Intersections}!Line\+Segment\+Intersector@{Line\+Segment\+Intersector}}
+\subsubsection{\texorpdfstring{compute\+Intersections()}{computeIntersections()}}
+{\footnotesize\ttfamily L\+S\+I\+Result Line\+Segment\+Intersector\+::compute\+Intersections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This computes the intersection point and visualizes it. \begin{DoxyReturn}{Returns}
+intersection points and all points that pass though it 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Line\+Segment\+Intersector.\+h\item 
+src/Line\+Segment\+Intersector.\+cpp\end{DoxyCompactItemize}

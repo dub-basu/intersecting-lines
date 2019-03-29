@@ -102,8 +102,8 @@ bool LineSegmentIntersector::LSISegment::operator<(const LineSegmentIntersector:
         if (lastReference == this_upper && lastReference == lsi_upper){
             Point comp = Point(lastReference.x, lastReference.y - DELTA);
 
-            bool toReturn = this->ls.y_projection(comp).x
-                   < lsi.ls.y_projection(comp).x;
+            bool toReturn = this->ls.horizontal_projection(comp).x
+                   < lsi.ls.horizontal_projection(comp).x;
             return toReturn;
         }
         if (lastReference == this_upper && lastReference == lsi_lower){
@@ -114,8 +114,8 @@ bool LineSegmentIntersector::LSISegment::operator<(const LineSegmentIntersector:
 //            cout << "LL\n";
             Point comp = Point(lastReference.x, lastReference.y + DELTA);
 
-            bool toReturn = this->ls.y_projection(comp).x
-                   < lsi.ls.y_projection(comp).x;
+            bool toReturn = this->ls.horizontal_projection(comp).x
+                   < lsi.ls.horizontal_projection(comp).x;
 //            cout << toReturn << "\n";
             return toReturn;
         }
@@ -127,16 +127,16 @@ bool LineSegmentIntersector::LSISegment::operator<(const LineSegmentIntersector:
     }
     else if(lastReference == this_lower || lastReference == lsi_lower){
         Point comp = Point(lastReference.x, lastReference.y + DELTA);
-        bool toReturn = this->ls.y_projection(comp).x
-               < lsi.ls.y_projection(comp).x;
+        bool toReturn = this->ls.horizontal_projection(comp).x
+               < lsi.ls.horizontal_projection(comp).x;
         return toReturn;
     }
     else  {
 
         // Only in case of ordering event point
         Point comp = Point(lastReference.x, lastReference.y - DELTA);
-        bool toReturn = this->ls.y_projection(comp).x
-                        < lsi.ls.y_projection(comp).x;
+        bool toReturn = this->ls.horizontal_projection(comp).x
+                        < lsi.ls.horizontal_projection(comp).x;
         return toReturn;
     }
 }
@@ -219,7 +219,7 @@ LSIResult LineSegmentIntersector::computeIntersections() {
 
 void LineSegmentIntersector::handleEventPoint(Point curr) {
     cout << curr << "\n";
-    LSISegment* lastContaining = NULL;
+//    LSISegment* lastContaining = NULL;
     Point temp = lastReference;
     lastReference = curr;
     while(eventQueue.size() > 0 && eventQueue.peek().p == curr) {
@@ -227,17 +227,19 @@ void LineSegmentIntersector::handleEventPoint(Point curr) {
         if (toInsert.et == UPPER) {
             upper.insert(toInsert.lsiSegment);
             cout << "\t" << toInsert.lsiSegment.ls;
+            //lastContaining = &(toInsert.lsiSegment);
             cout << "UPPER SIZE = " << upper.size() << "\n";
         } else if (toInsert.et == LOWER) {
             lower.insert(toInsert.lsiSegment);
             cout << "\t" << toInsert.lsiSegment.ls;
+            //lastContaining = &(toInsert.lsiSegment);
             cout << "LOWER SIZE = " << lower.size() << "\n";
         } else if (toInsert.et == CONTAINING) {
             LineSegment candidate = toInsert.lsiSegment.ls;
             if(curr != candidate.start_pt() && curr != candidate.end_pt()) {
                 containing.insert(toInsert.lsiSegment);
                 cout << "\t" << toInsert.lsiSegment.ls;
-                lastContaining = &(toInsert.lsiSegment);
+//                lastContaining = &(toInsert.lsiSegment);
                 cout << "CONTAINING SIZE = " << containing.size() << "\n";
             }
         } else {
@@ -245,29 +247,38 @@ void LineSegmentIntersector::handleEventPoint(Point curr) {
         }
     }
 
-    if (containing.size() > 0){
-        //std::cout << "containing size = " << containing.size() << std::endl;
-
-        LSISegment* toAdd = lastContaining;
-        while( toAdd != NULL && (toAdd->ls.contains_point(curr))) {
-        //    cout << "L";
-        //    if (toAdd->ls.start_pt() != curr && toAdd->ls.end_pt() != curr){
-                containing.insert(*toAdd);
-         //   }
-            toAdd = status.searchL(*toAdd);
-        }
-
-        toAdd = lastContaining;
-        while( toAdd != NULL && toAdd->ls.contains_point(curr)) {
-            //   cout << "R";
-            // if (toAdd->ls.start_pt() != curr && toAdd->ls.end_pt() != curr) {
-                containing.insert(*toAdd);
-            // }
-            toAdd = status.searchR(*toAdd);
-        }
-
-        cout << "\tFINAL CONTAINING " << containing.size() << "\n";
-    }
+//    if (containing.size() >= 0){
+//        //std::cout << "containing size = " << containing.size() << std::endl;
+//        // Quick fix. Necessary?
+//        LSISegment* toAdd = lastContaining;
+//        if (curr == Point(-3,3)){
+//            cout << "here " << toAdd << "\n";
+//        }
+//        while( toAdd != NULL && (toAdd->ls.contains_point(curr))) {
+//            if (curr == Point(-3,3)){
+//                cout << "here search l\n";
+//            }
+//        //    cout << "L";
+//            if (toAdd->ls.start_pt() != curr && toAdd->ls.end_pt() != curr){
+//                containing.insert(*toAdd);
+//            }
+//            toAdd = status.searchL(*toAdd);
+//        }
+//
+//        toAdd = lastContaining;
+//        while( toAdd != NULL && toAdd->ls.contains_point(curr)) {
+//            //   cout << "R";
+////            if (curr == Point(-3,3) || curr == Point(3,-10)){
+////                cout << "here search r\n";
+////            }
+//            if (toAdd->ls.start_pt() != curr && toAdd->ls.end_pt() != curr) {
+//                containing.insert(*toAdd);
+//            }
+//            toAdd = status.searchR(*toAdd);
+//        }
+//
+//        cout << "\tFINAL CONTAINING " << containing.size() << "\n";
+//    }
 
     // For reordering efficiently
     lastReference = temp;
@@ -321,7 +332,7 @@ void LineSegmentIntersector::handleEventPoint(Point curr) {
         status.insert(i);
     }
 
-    cout << "\tStatus ";
+    cout << "\tStatus"; // size = " << status.size();
     status.inorder();
     cout << "\n\t===================================\n";
 

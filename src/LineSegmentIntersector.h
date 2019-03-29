@@ -10,8 +10,17 @@
 #include "Status.h"
 #include "LSIGraphix.h"
 
+/**
+ * \class
+ * LSI Result is the class that is returned by LineSegmentIntersector
+ * It is a map of the intersection points to the list of line segments containing it
+ */
 typedef std::map< Point, std::list<LineSegment> > LSIResult;
 
+/**
+ * \class
+ * This class encapsulates computations and visualisation of the event points
+ */
 class LineSegmentIntersector {
 private:
     enum EventType {UPPER,LOWER,CONTAINING};
@@ -67,7 +76,16 @@ private:
 public:
     LSIGraphix& lsiGfx;
     static Point lastReference;
+    /**
+     * Pass the set of points and LSI Visualizer Object
+     *
+     */
     LineSegmentIntersector(std::vector<LineSegment>& , LSIGraphix&);
+
+    /**
+     * This computes the intersection point and visualizes it.
+     * @return intersection points and all points that pass though it
+     */
     LSIResult computeIntersections();
 
 };

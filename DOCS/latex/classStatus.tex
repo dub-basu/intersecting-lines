@@ -1,0 +1,89 @@
+\hypertarget{classStatus}{}\section{Status$<$ T $>$ Class Template Reference}
+\label{classStatus}\index{Status$<$ T $>$@{Status$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Status.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classStatus_aa019369b98450d3003f6359003fcb348}{inorder} ()
+\item 
+void \hyperlink{classStatus_a5fd5e49c03713d3b918010a15595d169}{insert} (T)
+\item 
+void \hyperlink{classStatus_afe333856c09425b4e0c7071ab4a700a5}{remove} (T)
+\item 
+T $\ast$ \hyperlink{classStatus_a0b6a56cd7787478d30814c372ce7aff3}{searchL} (T)
+\item 
+T $\ast$ \hyperlink{classStatus_a8db67cdc477f8f55b5c16678b2ec27f0}{searchR} (T)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class Status$<$ T $>$}
+
+\hyperlink{classStatus}{Status} is a balanced tree, that allows for neighbour search 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & \+: template class for which you want to build the status \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classStatus_aa019369b98450d3003f6359003fcb348}\label{classStatus_aa019369b98450d3003f6359003fcb348}} 
+\index{Status@{Status}!inorder@{inorder}}
+\index{inorder@{inorder}!Status@{Status}}
+\subsubsection{\texorpdfstring{inorder()}{inorder()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \hyperlink{classStatus}{Status}$<$ T $>$\+::inorder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Prints inorder traversal Requires that operator$<$$<$ for ostream be overloaded for $<$ T $>$ class \mbox{\Hypertarget{classStatus_a5fd5e49c03713d3b918010a15595d169}\label{classStatus_a5fd5e49c03713d3b918010a15595d169}} 
+\index{Status@{Status}!insert@{insert}}
+\index{insert@{insert}!Status@{Status}}
+\subsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classStatus}{Status}$<$ T $>$\+::insert (\begin{DoxyParamCaption}\item[{T}]{key }\end{DoxyParamCaption})}
+
+Insert an element into the tree 
+\begin{DoxyParams}{Parameters}
+{\em element} & to insert \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classStatus_afe333856c09425b4e0c7071ab4a700a5}\label{classStatus_afe333856c09425b4e0c7071ab4a700a5}} 
+\index{Status@{Status}!remove@{remove}}
+\index{remove@{remove}!Status@{Status}}
+\subsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classStatus}{Status}$<$ T $>$\+::remove (\begin{DoxyParamCaption}\item[{T}]{key }\end{DoxyParamCaption})}
+
+Removes element from tree Does nothing is element is not present \mbox{\Hypertarget{classStatus_a0b6a56cd7787478d30814c372ce7aff3}\label{classStatus_a0b6a56cd7787478d30814c372ce7aff3}} 
+\index{Status@{Status}!searchL@{searchL}}
+\index{searchL@{searchL}!Status@{Status}}
+\subsubsection{\texorpdfstring{search\+L()}{searchL()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+T $\ast$ \hyperlink{classStatus}{Status}$<$ T $>$\+::searchL (\begin{DoxyParamCaption}\item[{T}]{key }\end{DoxyParamCaption})}
+
+Searches for element to the left of the param Returns null if no neighbour exists If param doesnt exist, we search for the smallest element greater than it 
+\begin{DoxyParams}{Parameters}
+{\em } & Element who\textquotesingle{}s left neighbour we want to search for\\
+\hline
+\end{DoxyParams}
+Search the tree for left sibling of node with value key. \mbox{\Hypertarget{classStatus_a8db67cdc477f8f55b5c16678b2ec27f0}\label{classStatus_a8db67cdc477f8f55b5c16678b2ec27f0}} 
+\index{Status@{Status}!searchR@{searchR}}
+\index{searchR@{searchR}!Status@{Status}}
+\subsubsection{\texorpdfstring{search\+R()}{searchR()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+T $\ast$ \hyperlink{classStatus}{Status}$<$ T $>$\+::searchR (\begin{DoxyParamCaption}\item[{T}]{key }\end{DoxyParamCaption})}
+
+Searches for element to the right of the param Returns null if no neighbour exists If param doesnt exist, we search for the smallest element greater than it 
+\begin{DoxyParams}{Parameters}
+{\em } & Element who\textquotesingle{}s right neighbour we want to search for\\
+\hline
+\end{DoxyParams}
+Search the tree for right sibling of node with value key. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Status.\+h\item 
+src/Status.\+cpp\end{DoxyCompactItemize}

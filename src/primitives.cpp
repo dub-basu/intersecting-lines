@@ -48,6 +48,9 @@ bool Point::is_nan(){
 }
 
 bool LineSegment::contains_point(Point pt) const{
+    if (pt == start_point || pt == end_point){
+        return true;
+    }
     coordinate slope_diff = (pt.x - start_point.x) * (pt.y - end_point.y)
                           - (pt.x - end_point.x) * (pt.y - start_point.y);
 
@@ -127,7 +130,7 @@ Point LineSegment::end_pt() const {
     return(end_point);
 }
 
-Point LineSegment::y_projection(Point pt) const{
+Point LineSegment::horizontal_projection(Point pt) const{
     if(end_point.y == start_point.y){
         return NAN_POINT;
     }
