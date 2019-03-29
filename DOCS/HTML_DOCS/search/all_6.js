@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['operator_21_3d',['operator!=',['../classPoint.html#ade5f3908ec0e412aea8c3e12f5d0e26f',1,'Point']]],
-  ['operator_3c',['operator&lt;',['../classPoint.html#a2d285a505e84d64a96974d5247e8ae7a',1,'Point']]],
-  ['operator_3d',['operator=',['../classPoint.html#a2e142edc132377fdc6873f6549daab2d',1,'Point']]],
-  ['operator_3d_3d',['operator==',['../classPoint.html#ac7bc64b9a683d5fb35780c739779f2fc',1,'Point::operator==()'],['../classLineSegment.html#ae73906b7230adbccf243c4b8dc6482b3',1,'LineSegment::operator==()']]]
+  ['linesegment',['LineSegment',['../classLineSegment.html',1,'LineSegment'],['../classLineSegment.html#a691e185edf3aa7e2dc12307f9ef4be6b',1,'LineSegment::LineSegment()']]],
+  ['linesegmentintersector',['LineSegmentIntersector',['../classLineSegmentIntersector.html',1,'LineSegmentIntersector'],['../classLineSegmentIntersector.html#abfe17083938ad4ee705fbe7d0051f209',1,'LineSegmentIntersector::LineSegmentIntersector()']]],
+  ['loopie',['loopie',['../classGraphix.html#af7b539b3ab40274dc2f89d060cba0c51',1,'Graphix']]],
+  ['lsigraphix',['LSIGraphix',['../classLSIGraphix.html',1,'LSIGraphix'],['../classLSIGraphix.html#a36adc59a5f2f87571cb230de95e0c0bc',1,'LSIGraphix::LSIGraphix()']]]
 ];

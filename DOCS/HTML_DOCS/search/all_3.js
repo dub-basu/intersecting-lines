@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['horizontal_5fprojection',['horizontal_projection',['../classLineSegment.html#a51a9d2fcca6b3ff03cb51fd4d8fae4ba',1,'LineSegment']]]
+  ['graphix',['Graphix',['../classGraphix.html',1,'Graphix'],['../classGraphix.html#a1d4cb173e0d22fee13a657489b7b55de',1,'Graphix::Graphix()']]]
 ];

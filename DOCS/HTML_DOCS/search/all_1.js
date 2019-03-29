@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['end_5fpt',['end_pt',['../classLineSegment.html#aa6c90340de500bb72bdde2114f838d57',1,'LineSegment']]],
-  ['eventqueue',['EventQueue',['../classEventQueue.html',1,'']]],
-  ['eventqueue_3c_20linesegmentintersector_3a_3alsipoint_20_3e',['EventQueue&lt; LineSegmentIntersector::LSIPoint &gt;',['../classEventQueue.html',1,'']]],
-  ['extractmin',['extractMin',['../classEventQueue.html#aa2f631077b7f200f65fb87bd3bb60f71',1,'EventQueue']]]
+  ['draw_5fdashed_5fline',['draw_dashed_line',['../classGraphix.html#af03ba028ad5bbb721a798c5b48450444',1,'Graphix']]],
+  ['draw_5fline',['draw_line',['../classGraphix.html#af2bd73aa70b282536cbfd2c19f0352bf',1,'Graphix']]]
 ];

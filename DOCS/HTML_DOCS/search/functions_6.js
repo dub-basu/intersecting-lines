@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['peek',['peek',['../classEventQueue.html#a3e739a353e6ef3fac228a33dd483d730',1,'EventQueue']]],
-  ['point',['Point',['../classPoint.html#ad92f2337b839a94ce97dcdb439b4325a',1,'Point::Point()'],['../classPoint.html#af7373698b9fafc53b0a5d06e511642e1',1,'Point::Point(coordinate x_in, coordinate y_in)']]]
+  ['linesegment',['LineSegment',['../classLineSegment.html#a691e185edf3aa7e2dc12307f9ef4be6b',1,'LineSegment']]],
+  ['linesegmentintersector',['LineSegmentIntersector',['../classLineSegmentIntersector.html#abfe17083938ad4ee705fbe7d0051f209',1,'LineSegmentIntersector']]],
+  ['loopie',['loopie',['../classGraphix.html#af7b539b3ab40274dc2f89d060cba0c51',1,'Graphix']]],
+  ['lsigraphix',['LSIGraphix',['../classLSIGraphix.html#a36adc59a5f2f87571cb230de95e0c0bc',1,'LSIGraphix']]]
 ];

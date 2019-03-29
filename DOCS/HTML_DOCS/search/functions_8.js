@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['searchl',['searchL',['../classStatus.html#a0b6a56cd7787478d30814c372ce7aff3',1,'Status']]],
-  ['searchr',['searchR',['../classStatus.html#a8db67cdc477f8f55b5c16678b2ec27f0',1,'Status']]],
-  ['size',['size',['../classEventQueue.html#a0ce7b577678a2d182edcf24fdc91397e',1,'EventQueue']]],
-  ['start_5fpt',['start_pt',['../classLineSegment.html#abe9136323cfe46be663907cbc1e3da2d',1,'LineSegment']]]
+  ['peek',['peek',['../classEventQueue.html#a3e739a353e6ef3fac228a33dd483d730',1,'EventQueue']]],
+  ['point',['Point',['../classPoint.html#ad92f2337b839a94ce97dcdb439b4325a',1,'Point::Point()'],['../classPoint.html#af7373698b9fafc53b0a5d06e511642e1',1,'Point::Point(coordinate x_in, coordinate y_in)']]]
 ];

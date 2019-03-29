@@ -26,16 +26,56 @@
 #include<mutex>
 #include "primitives.h"
 
+/**
+ * \class Graphix
+ * \brief Class for handling graphics using OpenGL.
+ */
 class Graphix{
     public:
         std::mutex& m_mutex; 
         static bool render_wait_flag;
         GLFWwindow* window;
+
+        /**
+         * Constructor. Creates a window instance with default parameters.
+         * Ideally runs on a separate thread from the thread executing the 
+         * core algorithm. 
+         * Accept a reference to a mutex. Mutex is used to maintain 
+         * synchronization between core algorithm execution and graphics 
+         * handling functions. 
+         * @param m_mutex Reference to a mutex object.
+         */
         Graphix(std::mutex& mtx);
+
+        /**
+         * Utility function to draw a line segment on the window. 
+         * @param line Object of LineSegment class. Holds description of 
+         * line segment to be drawn.
+         */        
         void draw_line(LineSegment line);
+
+        /**
+         *  Utility function to draw a dashed/stippled line segment on the window. 
+         * @param line Object of LineSegment class. Holds description of 
+         * line segment to be drawn.
+         */        
         void draw_dashed_line(LineSegment line);
+
+        /**
+         * Runs an infinite loop that listens to various events.  
+         */        
         void loopie();
+
+        /**
+         * Renders whatever is on the buffer to the window.
+         */        
         void render();
+
+        /**
+         * Utility function to clear the window. 
+         * @param line Object of LineSegment class. Holds description of 
+         * line segment to be drawn.
+         */
         void clear();
     private:
         static void mouse_button_callback(GLFWwindow* window, int button, int action, int mode);

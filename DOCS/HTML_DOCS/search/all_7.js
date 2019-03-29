@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['peek',['peek',['../classEventQueue.html#a3e739a353e6ef3fac228a33dd483d730',1,'EventQueue']]],
-  ['point',['Point',['../classPoint.html',1,'Point'],['../classPoint.html#ad92f2337b839a94ce97dcdb439b4325a',1,'Point::Point()'],['../classPoint.html#af7373698b9fafc53b0a5d06e511642e1',1,'Point::Point(coordinate x_in, coordinate y_in)']]]
+  ['operator_21_3d',['operator!=',['../classPoint.html#ade5f3908ec0e412aea8c3e12f5d0e26f',1,'Point']]],
+  ['operator_3c',['operator&lt;',['../classPoint.html#a2d285a505e84d64a96974d5247e8ae7a',1,'Point']]],
+  ['operator_3d',['operator=',['../classPoint.html#a2e142edc132377fdc6873f6549daab2d',1,'Point']]],
+  ['operator_3d_3d',['operator==',['../classPoint.html#ac7bc64b9a683d5fb35780c739779f2fc',1,'Point::operator==()'],['../classLineSegment.html#ae73906b7230adbccf243c4b8dc6482b3',1,'LineSegment::operator==()']]]
 ];

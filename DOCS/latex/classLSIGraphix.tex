@@ -2,6 +2,15 @@
 \label{classLSIGraphix}\index{L\+S\+I\+Graphix@{L\+S\+I\+Graphix}}
 
 
+Class for especially handling events for Bentley-\/\+Ottoman Algorithm. Inherits \hyperlink{classGraphix}{Graphix} class.  
+
+
+
+
+{\ttfamily \#include $<$L\+S\+I\+Graphix.\+h$>$}
+
+
+
 Inheritance diagram for L\+S\+I\+Graphix\+:
 \nopagebreak
 \begin{figure}[H]
@@ -23,16 +32,50 @@ Collaboration diagram for L\+S\+I\+Graphix\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classLSIGraphix_a36adc59a5f2f87571cb230de95e0c0bc}\label{classLSIGraphix_a36adc59a5f2f87571cb230de95e0c0bc}} 
-{\bfseries L\+S\+I\+Graphix} (std\+::mutex \&mtx)
+\hyperlink{classLSIGraphix_a36adc59a5f2f87571cb230de95e0c0bc}{L\+S\+I\+Graphix} (std\+::mutex \&mtx)
 \item 
-\mbox{\Hypertarget{classLSIGraphix_aa95fa264bddca976f974f6eae9173444}\label{classLSIGraphix_aa95fa264bddca976f974f6eae9173444}} 
-void {\bfseries init\+\_\+lines} (std\+::vector$<$ \hyperlink{classLineSegment}{Line\+Segment} $>$ lines)
+void \hyperlink{classLSIGraphix_aa95fa264bddca976f974f6eae9173444}{init\+\_\+lines} (std\+::vector$<$ \hyperlink{classLineSegment}{Line\+Segment} $>$ lines)
 \item 
-\mbox{\Hypertarget{classLSIGraphix_a136dca7736d6a885ef9b40824808c447}\label{classLSIGraphix_a136dca7736d6a885ef9b40824808c447}} 
-void {\bfseries update\+\_\+event} (\hyperlink{classPoint}{Point})
+void \hyperlink{classLSIGraphix_a136dca7736d6a885ef9b40824808c447}{update\+\_\+event} (\hyperlink{classPoint}{Point})
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class for especially handling events for Bentley-\/\+Ottoman Algorithm. Inherits \hyperlink{classGraphix}{Graphix} class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLSIGraphix_a36adc59a5f2f87571cb230de95e0c0bc}\label{classLSIGraphix_a36adc59a5f2f87571cb230de95e0c0bc}} 
+\index{L\+S\+I\+Graphix@{L\+S\+I\+Graphix}!L\+S\+I\+Graphix@{L\+S\+I\+Graphix}}
+\index{L\+S\+I\+Graphix@{L\+S\+I\+Graphix}!L\+S\+I\+Graphix@{L\+S\+I\+Graphix}}
+\subsubsection{\texorpdfstring{L\+S\+I\+Graphix()}{LSIGraphix()}}
+{\footnotesize\ttfamily L\+S\+I\+Graphix\+::\+L\+S\+I\+Graphix (\begin{DoxyParamCaption}\item[{std\+::mutex \&}]{mtx }\end{DoxyParamCaption})}
+
+Constructor. Calls super class \hyperlink{classGraphix}{Graphix} constructor by passing mutex object and initiates a sweep line. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLSIGraphix_aa95fa264bddca976f974f6eae9173444}\label{classLSIGraphix_aa95fa264bddca976f974f6eae9173444}} 
+\index{L\+S\+I\+Graphix@{L\+S\+I\+Graphix}!init\+\_\+lines@{init\+\_\+lines}}
+\index{init\+\_\+lines@{init\+\_\+lines}!L\+S\+I\+Graphix@{L\+S\+I\+Graphix}}
+\subsubsection{\texorpdfstring{init\+\_\+lines()}{init\_lines()}}
+{\footnotesize\ttfamily void L\+S\+I\+Graphix\+::init\+\_\+lines (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classLineSegment}{Line\+Segment} $>$}]{lines }\end{DoxyParamCaption})}
+
+Updates list of input lines to be drawn. 
+\begin{DoxyParams}{Parameters}
+{\em lines} & updated set of lines \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLSIGraphix_a136dca7736d6a885ef9b40824808c447}\label{classLSIGraphix_a136dca7736d6a885ef9b40824808c447}} 
+\index{L\+S\+I\+Graphix@{L\+S\+I\+Graphix}!update\+\_\+event@{update\+\_\+event}}
+\index{update\+\_\+event@{update\+\_\+event}!L\+S\+I\+Graphix@{L\+S\+I\+Graphix}}
+\subsubsection{\texorpdfstring{update\+\_\+event()}{update\_event()}}
+{\footnotesize\ttfamily void L\+S\+I\+Graphix\+::update\+\_\+event (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{pt }\end{DoxyParamCaption})}
+
+Updates event point and sweep line in the window buffer. 
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{classPoint}{Point}} & New event point. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

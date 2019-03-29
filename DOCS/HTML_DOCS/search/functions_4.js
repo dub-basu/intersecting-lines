@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['linesegment',['LineSegment',['../classLineSegment.html#a691e185edf3aa7e2dc12307f9ef4be6b',1,'LineSegment']]],
-  ['linesegmentintersector',['LineSegmentIntersector',['../classLineSegmentIntersector.html#abfe17083938ad4ee705fbe7d0051f209',1,'LineSegmentIntersector']]]
+  ['horizontal_5fprojection',['horizontal_projection',['../classLineSegment.html#a51a9d2fcca6b3ff03cb51fd4d8fae4ba',1,'LineSegment']]]
 ];
