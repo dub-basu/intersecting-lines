@@ -25,9 +25,7 @@ void LSIGraphix::draw_init_lines(){
 }
 
 void LSIGraphix::draw_sweep_line(){
-    // glColor3f(SWEEP_LINE_COLOR);
-    Graphix::draw_line(this -> sweep_line);
-    // glColor3f(DRAW_COLOR);
+    Graphix::draw_dashed_line(this -> sweep_line);
 }
 
 void LSIGraphix::shift_sweep_line(Point pt){

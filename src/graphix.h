@@ -4,6 +4,7 @@
 #define BG_COLOR 1.0, 1.0, 1.0
 #define BG_ALPHA 1.0
 #define DRAW_COLOR 1.0, 0.0, 0.0
+#define DRAW_COLOR2 0.0, 0.0, 0.0
 
 #define WIN_BREADTH 540
 #define WIN_HEIGHT 540

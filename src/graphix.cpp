@@ -47,10 +47,16 @@ void Graphix::cursor_enter_callback(GLFWwindow* window, int entered){
 
 void Graphix::draw_dashed_line(LineSegment line){
 
+    if(line.is_nan()) return;
     glPushAttrib(GL_ENABLE_BIT); 
     glLineStipple(1, 0x1111);
     glEnable(GL_LINE_STIPPLE);
-    draw_line(line);
+    glBegin(GL_LINES);
+        glColor3f(DRAW_COLOR2);
+        glVertex2f(line.start_pt().x, line.start_pt().y);
+        glVertex2f(line.end_pt().x, line.end_pt().y);
+        glColor3f(DRAW_COLOR);
+    glEnd();
     glPopAttrib();
 
 }
