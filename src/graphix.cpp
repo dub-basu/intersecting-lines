@@ -1,4 +1,5 @@
 #include "graphix.h"
+#include<unistd.h>
 
 using namespace std;
 
@@ -32,8 +33,8 @@ void Graphix::key_callback(GLFWwindow* window, int key, int scancode, int action
         // cout << "entered Q" << endl;
     }
     else if(key == GLFW_KEY_SPACE && action == GLFW_PRESS){
-        render_wait_flag = true;
-        glfwPostEmptyEvent();
+        pause_flag ^= true;
+        cout << (pause_flag? "\n--------PAUSED--------\n" : "------UNPAUSED------\n") << endl;
     }
     else{
         glfwPostEmptyEvent();
@@ -55,18 +56,18 @@ void Graphix::draw_dashed_line(LineSegment line){
 }
 
 void Graphix::render(){
-    // while(render_wait_flag == false) glfwWaitEvents();
     m_mutex.lock();
-    // render_wait_flag = true;
-    while(render_wait_flag == false) glfwWaitEvents();
+    usleep(ANIMATION_SPEED);
+    while(pause_flag) glfwWaitEvents();
     glfwSwapBuffers(window);
-    render_wait_flag = false;
     m_mutex.unlock();
 }
 
 void Graphix::draw_line(LineSegment line){
     if(line.is_nan()) return;
     glBegin(GL_LINES);
+        // if(line.start_pt().x > 0) glColor3f(1,1,0.5);
+        // else glColor3f(0,0,1);
         glVertex2f(line.start_pt().x, line.start_pt().y);
         glVertex2f(line.end_pt().x, line.end_pt().y);
     glEnd();
@@ -85,7 +86,7 @@ void Graphix::loopie(){
     glfwTerminate();
 }
 
-bool Graphix::render_wait_flag = false; 
+bool Graphix::pause_flag = true;
 
 Graphix::Graphix(std::mutex& mtx):m_mutex(mtx){
     glfwSetErrorCallback(error_callback);
@@ -98,6 +99,8 @@ Graphix::Graphix(std::mutex& mtx):m_mutex(mtx){
         exit(EXIT_FAILURE);
     }
 
+    // Animation paused in the beginning
+    pause_flag = true;
 
     // Set common callbacks
     glfwMakeContextCurrent(window);
@@ -125,9 +128,7 @@ Graphix::Graphix(std::mutex& mtx):m_mutex(mtx){
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    render_wait_flag = true;
     render();
-    render_wait_flag = false;    
 
 }
 

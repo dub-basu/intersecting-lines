@@ -16,6 +16,7 @@
 
 #define WIN_NAME "Graphix"
 #define POINT_SIZE 8.0
+#define ANIMATION_SPEED 2000000
 
 #endif
 
@@ -33,7 +34,7 @@
 class Graphix{
     public:
         std::mutex& m_mutex; 
-        static bool render_wait_flag;
+        static bool pause_flag;
         GLFWwindow* window;
 
         /**
