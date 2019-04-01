@@ -15,7 +15,6 @@ include_directories( ./include ./src)
 add_executable(line-intersection
                 ./src/main.cpp
                 ./src/primitives.cpp
-                ./src/containers.cpp
                 ./src/graphix.cpp
                 ./src/Status.cpp
                 ./src/LineSegmentIntersector.cpp
