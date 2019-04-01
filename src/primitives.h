@@ -31,7 +31,7 @@ typedef long double len;
  *  \example Point p(3,5): p is point with coordinates (3,5)
  */
 class Point{
-private:
+protected:
     friend std::ostream& operator<<(std::ostream& os, const Point& pt);
 
 public:
@@ -105,7 +105,7 @@ public:
  * does not affect the behaviour of the object
  */
 class LineSegment{
-    private:
+    protected:
         Point start_point;
         Point end_point;
         friend std::ostream& operator<<(std::ostream& os, const LineSegment& l);
