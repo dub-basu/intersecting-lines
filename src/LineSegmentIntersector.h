@@ -25,37 +25,29 @@ class LineSegmentIntersector {
 private:
     enum EventType {UPPER,LOWER,CONTAINING};
 
-    class LSISegment {
-    private:
-    public:
-        //LineSegmentIntersector& LSI;
-        bool operator< (const LSISegment&) const;
-        bool operator> (const LSISegment&) const;
-        bool operator != (const LSISegment&) const;
-        bool operator <= (const LSISegment&) const;
-        LineSegment ls;
-        LSISegment();
-        LSISegment(LineSegment);
-        LSISegment& operator=(LSISegment& );
-        friend std::ostream& operator<<(std::ostream& os, const LSISegment& lsiSegment);
-        bool operator==(LSISegment& );
+    class LSISegment: public LineSegment{
+        private:
+        public:
+            bool operator< (const LSISegment&) const;
+            bool operator> (const LSISegment&) const;
+            bool operator != (const LSISegment&) const;
+            bool operator <= (const LSISegment&) const;
+            LSISegment();
+            LSISegment(LineSegment);
+            LSISegment& operator=(LSISegment& );
     };
 
-
     // Internal Representation
-    class LSIPoint {
+    class LSIPoint: public Point {
     private:
     public:
         //LineSegmentIntersector& LSI;
-        Point p;
         LSISegment lsiSegment;
         EventType et;
         bool operator< (LSIPoint);
         LSIPoint& operator= (LSIPoint&);
         LSIPoint(Point, LSISegment, EventType);
     };
-
-    friend std::ostream& operator<<(std::ostream& os, const LSISegment& lsiSegment);
 
     LSIResult result;
     std::set<LSISegment> upper;
