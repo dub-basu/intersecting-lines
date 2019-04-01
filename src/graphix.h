@@ -54,14 +54,14 @@ class Graphix{
          * @param line Object of LineSegment class. Holds description of 
          * line segment to be drawn.
          */        
-        void draw_line(LineSegment line);
+        void draw_line(LineSegment line, GLfloat red=1, GLfloat green=0, GLfloat blue=0);
 
         /**
          *  Utility function to draw a dashed/stippled line segment on the window. 
          * @param line Object of LineSegment class. Holds description of 
          * line segment to be drawn.
          */        
-        void draw_dashed_line(LineSegment line);
+        void draw_dashed_line(LineSegment line, GLfloat red=0, GLfloat green=0, GLfloat blue=0);
 
         /**
          * Runs an infinite loop that listens to various events.  

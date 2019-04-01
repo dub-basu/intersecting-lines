@@ -45,14 +45,14 @@ void Graphix::cursor_enter_callback(GLFWwindow* window, int entered){
     glfwPostEmptyEvent();
 }
 
-void Graphix::draw_dashed_line(LineSegment line){
+void Graphix::draw_dashed_line(LineSegment line, GLfloat red, GLfloat green, GLfloat blue){
 
     if(line.is_nan()) return;
     glPushAttrib(GL_ENABLE_BIT); 
     glLineStipple(1, 0x1111);
     glEnable(GL_LINE_STIPPLE);
     glBegin(GL_LINES);
-        glColor3f(DRAW_COLOR2);
+        glColor3f(red, green, blue);
         glVertex2f(line.start_pt().x, line.start_pt().y);
         glVertex2f(line.end_pt().x, line.end_pt().y);
         glColor3f(DRAW_COLOR);
@@ -69,13 +69,13 @@ void Graphix::render(){
     m_mutex.unlock();
 }
 
-void Graphix::draw_line(LineSegment line){
+void Graphix::draw_line(LineSegment line, GLfloat red, GLfloat green, GLfloat blue){
     if(line.is_nan()) return;
     glBegin(GL_LINES);
-        // if(line.start_pt().x > 0) glColor3f(1,1,0.5);
-        // else glColor3f(0,0,1);
+        glColor3f(red,green,blue);
         glVertex2f(line.start_pt().x, line.start_pt().y);
         glVertex2f(line.end_pt().x, line.end_pt().y);
+        glColor3f(DRAW_COLOR);
     glEnd();
 }
 
