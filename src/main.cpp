@@ -5,14 +5,14 @@
 #include <thread>
 #include <mutex>
 #include "LineSegmentIntersector.h"
-#include "LSIGraphix.h"
+// #include "LSIGraphix.h"
 using namespace std;
 
 #define DEFAULT_FILENAME "../src/test.txt"
 
-void init_graphix_class(LSIGraphix* x){
-    x->loopie();
-}
+// void init_graphix_class(LSIGraphix* x){
+//     x->loopie();
+// }
 
 
 void get_lines_from_file(string filename, vector<LineSegment>& all_lines){
@@ -43,9 +43,9 @@ void get_lines_from_file(string filename, vector<LineSegment>& all_lines){
 
 int main(int argc, char** argv){
 
-    std::mutex mtx;
-    LSIGraphix gfx(mtx);
-    thread t1(init_graphix_class, &gfx);
+    // std::mutex mtx;
+    // LSIGraphix gfx(mtx);
+    // thread t1(init_graphix_class, &gfx);
 
     string filename;
     if(argc > 1){
@@ -58,7 +58,7 @@ int main(int argc, char** argv){
     vector<LineSegment> all_lines;
     get_lines_from_file(filename, all_lines);
 
-    LineSegmentIntersector lsi(all_lines, gfx);
+    LineSegmentIntersector lsi(all_lines);
     LSIResult res = lsi.computeIntersections();
     cout << "RESULT:\n";
 
@@ -70,6 +70,6 @@ int main(int argc, char** argv){
         }
     }
 
-    t1.join();
+    // t1.join();
     return 0;
 }

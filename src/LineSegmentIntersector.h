@@ -8,7 +8,7 @@
 #include "EventQueue.h"
 #include "primitives.h"
 #include "Status.h"
-#include "LSIGraphix.h"
+// #include "LSIGraphix.h"
 
 /**
  * \class
@@ -74,13 +74,13 @@ protected:
     void findNewEvent(LSISegment*, LSISegment*, Point);
 
 public:
-    LSIGraphix& lsiGfx;
+    // LSIGraphix& lsiGfx;
     static Point lastReference;
     /**
      * Pass the set of points and LSI Visualizer Object
      *
      */
-    LineSegmentIntersector(std::vector<LineSegment>& , LSIGraphix&);
+    LineSegmentIntersector(std::vector<LineSegment>&);
 
     /**
      * This computes the intersection point and visualizes it.
