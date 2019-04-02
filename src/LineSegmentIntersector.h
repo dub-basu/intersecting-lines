@@ -22,9 +22,13 @@ typedef std::map< Point, std::list<LineSegment> > LSIResult;
  * This class encapsulates computations and visualisation of the event points
  */
 class LineSegmentIntersector {
-private:
+protected:
     enum EventType {UPPER,LOWER,CONTAINING};
 
+    /**
+     * \class
+     * \brief Specializes primitive LineSegment class to suit algorithm requirements
+     */
     class LSISegment: public LineSegment{
         private:
         public:
@@ -38,6 +42,10 @@ private:
     };
 
     // Internal Representation
+    /**
+     * \class
+     * \brief Specializes primitive Point class to suit algorithm requirements
+     */
     class LSIPoint: public Point {
     private:
     public:

@@ -3,13 +3,14 @@
 
 
 Collaboration diagram for Line\+Segment\+Intersector\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=235pt]{classLineSegmentIntersector__coll__graph}
-\end{center}
-\end{figure}
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classLineSegmentIntersector_1_1LSIPoint}{L\+S\+I\+Point}
+\item 
+class \hyperlink{classLineSegmentIntersector_1_1LSISegment}{L\+S\+I\+Segment}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -29,14 +30,53 @@ L\+S\+I\+Result \hyperlink{classLineSegmentIntersector_a261dcce43777e1954e81589c
 \mbox{\Hypertarget{classLineSegmentIntersector_a170c7914f53e24387e8e46cedf3a1290}\label{classLineSegmentIntersector_a170c7914f53e24387e8e46cedf3a1290}} 
 static \hyperlink{classPoint}{Point} {\bfseries last\+Reference} = N\+A\+N\+\_\+\+P\+O\+I\+NT
 \end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_a6a52c49fcc65bed18dbae1c5da533ded}\label{classLineSegmentIntersector_a6a52c49fcc65bed18dbae1c5da533ded}} 
+enum {\bfseries Event\+Type} \{ {\bfseries U\+P\+P\+ER}, 
+{\bfseries L\+O\+W\+ER}, 
+{\bfseries C\+O\+N\+T\+A\+I\+N\+I\+NG}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_a04879d41e0615b59ade2ac62f205a9a0}\label{classLineSegmentIntersector_a04879d41e0615b59ade2ac62f205a9a0}} 
+void {\bfseries handle\+Event\+Point} (\hyperlink{classPoint}{Point})
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_a0936f7337dbe849cf74ef39293b14860}\label{classLineSegmentIntersector_a0936f7337dbe849cf74ef39293b14860}} 
+void {\bfseries find\+New\+Event} (\hyperlink{classLineSegmentIntersector_1_1LSISegment}{L\+S\+I\+Segment} $\ast$, \hyperlink{classLineSegmentIntersector_1_1LSISegment}{L\+S\+I\+Segment} $\ast$, \hyperlink{classPoint}{Point})
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_a596f254a15acdf01659e0eed9c949c83}\label{classLineSegmentIntersector_a596f254a15acdf01659e0eed9c949c83}} 
+L\+S\+I\+Result {\bfseries result}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_abebbac25196e3421773b13432e6095f8}\label{classLineSegmentIntersector_abebbac25196e3421773b13432e6095f8}} 
+std\+::set$<$ \hyperlink{classLineSegmentIntersector_1_1LSISegment}{L\+S\+I\+Segment} $>$ {\bfseries upper}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_a5371cdc13d924b19eafcbd91f33eb978}\label{classLineSegmentIntersector_a5371cdc13d924b19eafcbd91f33eb978}} 
+std\+::set$<$ \hyperlink{classLineSegmentIntersector_1_1LSISegment}{L\+S\+I\+Segment} $>$ {\bfseries lower}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_a92991afc8378f4aafee2201c115ae83d}\label{classLineSegmentIntersector_a92991afc8378f4aafee2201c115ae83d}} 
+std\+::set$<$ \hyperlink{classLineSegmentIntersector_1_1LSISegment}{L\+S\+I\+Segment} $>$ {\bfseries containing}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_a404283b0014c4d5c195b02b1cd922b50}\label{classLineSegmentIntersector_a404283b0014c4d5c195b02b1cd922b50}} 
+\hyperlink{classStatus}{Status}$<$ \hyperlink{classLineSegmentIntersector_1_1LSISegment}{L\+S\+I\+Segment} $>$ {\bfseries status}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_a10c2e27236152bf4ee9f9a696ff3549e}\label{classLineSegmentIntersector_a10c2e27236152bf4ee9f9a696ff3549e}} 
+std\+::vector$<$ \hyperlink{classLineSegment}{Line\+Segment} $>$ \& {\bfseries input}
+\item 
+\mbox{\Hypertarget{classLineSegmentIntersector_aefa3fc6020399c9f7c31a46d4ec3d9bd}\label{classLineSegmentIntersector_aefa3fc6020399c9f7c31a46d4ec3d9bd}} 
+\hyperlink{classEventQueue}{Event\+Queue}$<$ \hyperlink{classLineSegmentIntersector_1_1LSIPoint}{Line\+Segment\+Intersector\+::\+L\+S\+I\+Point} $>$ {\bfseries event\+Queue}
+\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classLineSegmentIntersector_ac30b368f45ebad37982a7529f590c24d}\label{classLineSegmentIntersector_ac30b368f45ebad37982a7529f590c24d}} 
-std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const L\+S\+I\+Segment \&lsi\+Segment)
-\item 
 \mbox{\Hypertarget{classLineSegmentIntersector_aa1641902c18c0376d0303883d4e759e5}\label{classLineSegmentIntersector_aa1641902c18c0376d0303883d4e759e5}} 
-void {\bfseries swap} (L\+S\+I\+Point \&, L\+S\+I\+Point \&)
+void {\bfseries swap} (\hyperlink{classLineSegmentIntersector_1_1LSIPoint}{L\+S\+I\+Point} \&, \hyperlink{classLineSegmentIntersector_1_1LSIPoint}{L\+S\+I\+Point} \&)
 \end{DoxyCompactItemize}
 
 

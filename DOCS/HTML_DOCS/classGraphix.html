@@ -24,6 +24,7 @@
    <div id="projectname">Line Segment Intersector
    &#160;<span id="projectnumber">1.0</span>
    </div>
+   <div id="projectbrief">Implementation of Bentley-Ottoman algorithm to find  intersectionpointsfromagivensetoflinesegments</div>
   </td>
  </tr>
  </tbody>
@@ -78,7 +79,6 @@ Inheritance diagram for Graphix:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGraphix__inherit__graph.png" border="0" usemap="#Graphix_inherit__map" alt="Inheritance graph"/></div>
 <map name="Graphix_inherit__map" id="Graphix_inherit__map">
-<area shape="rect" id="node2" href="classLSIGraphix.html" title="LSIGraphix" alt="" coords="5,80,92,107"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -86,10 +86,10 @@ Inheritance diagram for Graphix:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1d4cb173e0d22fee13a657489b7b55de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#a1d4cb173e0d22fee13a657489b7b55de">Graphix</a> (std::mutex &amp;mtx)</td></tr>
 <tr class="separator:a1d4cb173e0d22fee13a657489b7b55de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2bd73aa70b282536cbfd2c19f0352bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#af2bd73aa70b282536cbfd2c19f0352bf">draw_line</a> (<a class="el" href="classLineSegment.html">LineSegment</a> line)</td></tr>
-<tr class="separator:af2bd73aa70b282536cbfd2c19f0352bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af03ba028ad5bbb721a798c5b48450444"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#af03ba028ad5bbb721a798c5b48450444">draw_dashed_line</a> (<a class="el" href="classLineSegment.html">LineSegment</a> line)</td></tr>
-<tr class="separator:af03ba028ad5bbb721a798c5b48450444"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74af1cd957a0fc3b5e0ee1f951a994e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#a74af1cd957a0fc3b5e0ee1f951a994e1">draw_line</a> (<a class="el" href="classLineSegment.html">LineSegment</a> line, GLfloat red=1, GLfloat green=0, GLfloat blue=0)</td></tr>
+<tr class="separator:a74af1cd957a0fc3b5e0ee1f951a994e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a1ebf0c6d508ce4686b9794c4dec871"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#a9a1ebf0c6d508ce4686b9794c4dec871">draw_dashed_line</a> (<a class="el" href="classLineSegment.html">LineSegment</a> line, GLfloat red=0, GLfloat green=0, GLfloat blue=0)</td></tr>
+<tr class="separator:a9a1ebf0c6d508ce4686b9794c4dec871"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7b539b3ab40274dc2f89d060cba0c51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#af7b539b3ab40274dc2f89d060cba0c51">loopie</a> ()</td></tr>
 <tr class="separator:af7b539b3ab40274dc2f89d060cba0c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e24075d5ded3741a9c14a7978b721d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#a3e24075d5ded3741a9c14a7978b721d8">render</a> ()</td></tr>
@@ -108,9 +108,9 @@ GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>window</b></t
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:abfd52cde22d5ea3f3b159cc4d5569853"><td class="memItemLeft" align="right" valign="top"><a id="abfd52cde22d5ea3f3b159cc4d5569853"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>render_wait_flag</b> = false</td></tr>
-<tr class="separator:abfd52cde22d5ea3f3b159cc4d5569853"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab883fc83301f2a1a9d55b7ed8828bf66"><td class="memItemLeft" align="right" valign="top"><a id="ab883fc83301f2a1a9d55b7ed8828bf66"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>pause_flag</b> = true</td></tr>
+<tr class="separator:ab883fc83301f2a1a9d55b7ed8828bf66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for handling graphics using OpenGL. </p>
@@ -163,8 +163,8 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>render_wait_fl
 
 </div>
 </div>
-<a id="af03ba028ad5bbb721a798c5b48450444"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af03ba028ad5bbb721a798c5b48450444">&#9670;&nbsp;</a></span>draw_dashed_line()</h2>
+<a id="a9a1ebf0c6d508ce4686b9794c4dec871"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a1ebf0c6d508ce4686b9794c4dec871">&#9670;&nbsp;</a></span>draw_dashed_line()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,8 +173,30 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>render_wait_fl
           <td class="memname">void Graphix::draw_dashed_line </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classLineSegment.html">LineSegment</a>&#160;</td>
-          <td class="paramname"><em>line</em></td><td>)</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">GLfloat&#160;</td>
+          <td class="paramname"><em>red</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLfloat&#160;</td>
+          <td class="paramname"><em>green</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLfloat&#160;</td>
+          <td class="paramname"><em>blue</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -187,8 +209,8 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>render_wait_fl
 
 </div>
 </div>
-<a id="af2bd73aa70b282536cbfd2c19f0352bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2bd73aa70b282536cbfd2c19f0352bf">&#9670;&nbsp;</a></span>draw_line()</h2>
+<a id="a74af1cd957a0fc3b5e0ee1f951a994e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74af1cd957a0fc3b5e0ee1f951a994e1">&#9670;&nbsp;</a></span>draw_line()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,8 +219,30 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>render_wait_fl
           <td class="memname">void Graphix::draw_line </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classLineSegment.html">LineSegment</a>&#160;</td>
-          <td class="paramname"><em>line</em></td><td>)</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">GLfloat&#160;</td>
+          <td class="paramname"><em>red</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLfloat&#160;</td>
+          <td class="paramname"><em>green</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLfloat&#160;</td>
+          <td class="paramname"><em>blue</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

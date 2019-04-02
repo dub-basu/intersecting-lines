@@ -24,6 +24,7 @@
    <div id="projectname">Line Segment Intersector
    &#160;<span id="projectnumber">1.0</span>
    </div>
+   <div id="projectbrief">Implementation of Bentley-Ottoman algorithm to find  intersectionpointsfromagivensetoflinesegments</div>
   </td>
  </tr>
  </tbody>
@@ -75,17 +76,13 @@ $(function() {
 Inheritance diagram for LSIGraphix:</div>
 <div class="dyncontent">
 <div class="center"><img src="classLSIGraphix__inherit__graph.png" border="0" usemap="#LSIGraphix_inherit__map" alt="Inheritance graph"/></div>
-<map name="LSIGraphix_inherit__map" id="LSIGraphix_inherit__map">
-<area shape="rect" id="node2" href="classGraphix.html" title="Graphix" alt="" coords="15,5,82,32"/>
-</map>
+<!-- MAP 0 -->
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for LSIGraphix:</div>
 <div class="dyncontent">
 <div class="center"><img src="classLSIGraphix__coll__graph.png" border="0" usemap="#LSIGraphix_coll__map" alt="Collaboration graph"/></div>
-<map name="LSIGraphix_coll__map" id="LSIGraphix_coll__map">
-<area shape="rect" id="node2" href="classGraphix.html" title="Graphix" alt="" coords="15,5,82,32"/>
-</map>
+<!-- MAP 1 -->
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -99,10 +96,10 @@ Public Member Functions</h2></td></tr>
 <tr class="inherit_header pub_methods_classGraphix"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classGraphix')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classGraphix.html">Graphix</a></td></tr>
 <tr class="memitem:a1d4cb173e0d22fee13a657489b7b55de inherit pub_methods_classGraphix"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#a1d4cb173e0d22fee13a657489b7b55de">Graphix</a> (std::mutex &amp;mtx)</td></tr>
 <tr class="separator:a1d4cb173e0d22fee13a657489b7b55de inherit pub_methods_classGraphix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2bd73aa70b282536cbfd2c19f0352bf inherit pub_methods_classGraphix"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#af2bd73aa70b282536cbfd2c19f0352bf">draw_line</a> (<a class="el" href="classLineSegment.html">LineSegment</a> line)</td></tr>
-<tr class="separator:af2bd73aa70b282536cbfd2c19f0352bf inherit pub_methods_classGraphix"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af03ba028ad5bbb721a798c5b48450444 inherit pub_methods_classGraphix"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#af03ba028ad5bbb721a798c5b48450444">draw_dashed_line</a> (<a class="el" href="classLineSegment.html">LineSegment</a> line)</td></tr>
-<tr class="separator:af03ba028ad5bbb721a798c5b48450444 inherit pub_methods_classGraphix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74af1cd957a0fc3b5e0ee1f951a994e1 inherit pub_methods_classGraphix"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#a74af1cd957a0fc3b5e0ee1f951a994e1">draw_line</a> (<a class="el" href="classLineSegment.html">LineSegment</a> line, GLfloat red=1, GLfloat green=0, GLfloat blue=0)</td></tr>
+<tr class="separator:a74af1cd957a0fc3b5e0ee1f951a994e1 inherit pub_methods_classGraphix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a1ebf0c6d508ce4686b9794c4dec871 inherit pub_methods_classGraphix"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#a9a1ebf0c6d508ce4686b9794c4dec871">draw_dashed_line</a> (<a class="el" href="classLineSegment.html">LineSegment</a> line, GLfloat red=0, GLfloat green=0, GLfloat blue=0)</td></tr>
+<tr class="separator:a9a1ebf0c6d508ce4686b9794c4dec871 inherit pub_methods_classGraphix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7b539b3ab40274dc2f89d060cba0c51 inherit pub_methods_classGraphix"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#af7b539b3ab40274dc2f89d060cba0c51">loopie</a> ()</td></tr>
 <tr class="separator:af7b539b3ab40274dc2f89d060cba0c51 inherit pub_methods_classGraphix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e24075d5ded3741a9c14a7978b721d8 inherit pub_methods_classGraphix"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphix.html#a3e24075d5ded3741a9c14a7978b721d8">render</a> ()</td></tr>
@@ -120,9 +117,9 @@ std::mutex &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>m_mutex</
 GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><b>window</b></td></tr>
 <tr class="separator:a8189df95428d2fda74b1becb84ed07c2 inherit pub_attribs_classGraphix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_classGraphix"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classGraphix')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classGraphix.html">Graphix</a></td></tr>
-<tr class="memitem:abfd52cde22d5ea3f3b159cc4d5569853 inherit pub_static_attribs_classGraphix"><td class="memItemLeft" align="right" valign="top"><a id="abfd52cde22d5ea3f3b159cc4d5569853"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>render_wait_flag</b> = false</td></tr>
-<tr class="separator:abfd52cde22d5ea3f3b159cc4d5569853 inherit pub_static_attribs_classGraphix"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab883fc83301f2a1a9d55b7ed8828bf66 inherit pub_static_attribs_classGraphix"><td class="memItemLeft" align="right" valign="top"><a id="ab883fc83301f2a1a9d55b7ed8828bf66"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>pause_flag</b> = true</td></tr>
+<tr class="separator:ab883fc83301f2a1a9d55b7ed8828bf66 inherit pub_static_attribs_classGraphix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for especially handling events for Bentley-Ottoman Algorithm. Inherits <a class="el" href="classGraphix.html" title="Class for handling graphics using OpenGL. ">Graphix</a> class. </p>

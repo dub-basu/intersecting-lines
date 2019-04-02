@@ -5,5 +5,5 @@ var searchData=
   ['size',['size',['../classEventQueue.html#a0ce7b577678a2d182edcf24fdc91397e',1,'EventQueue']]],
   ['start_5fpt',['start_pt',['../classLineSegment.html#abe9136323cfe46be663907cbc1e3da2d',1,'LineSegment']]],
   ['status',['Status',['../classStatus.html',1,'']]],
-  ['status_3c_20lsisegment_20_3e',['Status&lt; LSISegment &gt;',['../classStatus.html',1,'']]]
+  ['status_3c_20linesegmentintersector_3a_3alsisegment_20_3e',['Status&lt; LineSegmentIntersector::LSISegment &gt;',['../classStatus.html',1,'']]]
 ];

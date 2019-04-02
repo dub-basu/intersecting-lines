@@ -24,6 +24,7 @@
    <div id="projectname">Line Segment Intersector
    &#160;<span id="projectnumber">1.0</span>
    </div>
+   <div id="projectbrief">Implementation of Bentley-Ottoman algorithm to find  intersectionpointsfromagivensetoflinesegments</div>
   </td>
  </tr>
  </tbody>
@@ -64,6 +65,9 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pro-types">Protected Types</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classLineSegmentIntersector-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -74,13 +78,16 @@ $(function() {
 Collaboration diagram for LineSegmentIntersector:</div>
 <div class="dyncontent">
 <div class="center"><img src="classLineSegmentIntersector__coll__graph.png" border="0" usemap="#LineSegmentIntersector_coll__map" alt="Collaboration graph"/></div>
-<map name="LineSegmentIntersector_coll__map" id="LineSegmentIntersector_coll__map">
-<area shape="rect" id="node2" href="classLSIGraphix.html" title="LSIGraphix" alt="" coords="5,81,92,108"/>
-<area shape="rect" id="node3" href="classGraphix.html" title="Graphix" alt="" coords="15,5,82,32"/>
-<area shape="rect" id="node4" href="classPoint.html" title="Stores point with X &amp; Y coordinate. " alt="" coords="116,81,168,108"/>
-</map>
+<!-- MAP 0 -->
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLineSegmentIntersector_1_1LSIPoint.html">LSIPoint</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLineSegmentIntersector_1_1LSISegment.html">LSISegment</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abfe17083938ad4ee705fbe7d0051f209"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLineSegmentIntersector.html#abfe17083938ad4ee705fbe7d0051f209">LineSegmentIntersector</a> (std::vector&lt; <a class="el" href="classLineSegment.html">LineSegment</a> &gt; &amp;, <a class="el" href="classLSIGraphix.html">LSIGraphix</a> &amp;)</td></tr>
@@ -100,13 +107,51 @@ Static Public Attributes</h2></td></tr>
 static <a class="el" href="classPoint.html">Point</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lastReference</b> = NAN_POINT</td></tr>
 <tr class="separator:a170c7914f53e24387e8e46cedf3a1290"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
+Protected Types</h2></td></tr>
+<tr class="memitem:a6a52c49fcc65bed18dbae1c5da533ded"><td class="memItemLeft" align="right" valign="top"><a id="a6a52c49fcc65bed18dbae1c5da533ded"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>EventType</b> { <b>UPPER</b>, 
+<b>LOWER</b>, 
+<b>CONTAINING</b>
+ }</td></tr>
+<tr class="separator:a6a52c49fcc65bed18dbae1c5da533ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a04879d41e0615b59ade2ac62f205a9a0"><td class="memItemLeft" align="right" valign="top"><a id="a04879d41e0615b59ade2ac62f205a9a0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleEventPoint</b> (<a class="el" href="classPoint.html">Point</a>)</td></tr>
+<tr class="separator:a04879d41e0615b59ade2ac62f205a9a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0936f7337dbe849cf74ef39293b14860"><td class="memItemLeft" align="right" valign="top"><a id="a0936f7337dbe849cf74ef39293b14860"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>findNewEvent</b> (<a class="el" href="classLineSegmentIntersector_1_1LSISegment.html">LSISegment</a> *, <a class="el" href="classLineSegmentIntersector_1_1LSISegment.html">LSISegment</a> *, <a class="el" href="classPoint.html">Point</a>)</td></tr>
+<tr class="separator:a0936f7337dbe849cf74ef39293b14860"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a596f254a15acdf01659e0eed9c949c83"><td class="memItemLeft" align="right" valign="top"><a id="a596f254a15acdf01659e0eed9c949c83"></a>
+LSIResult&#160;</td><td class="memItemRight" valign="bottom"><b>result</b></td></tr>
+<tr class="separator:a596f254a15acdf01659e0eed9c949c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abebbac25196e3421773b13432e6095f8"><td class="memItemLeft" align="right" valign="top"><a id="abebbac25196e3421773b13432e6095f8"></a>
+std::set&lt; <a class="el" href="classLineSegmentIntersector_1_1LSISegment.html">LSISegment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>upper</b></td></tr>
+<tr class="separator:abebbac25196e3421773b13432e6095f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5371cdc13d924b19eafcbd91f33eb978"><td class="memItemLeft" align="right" valign="top"><a id="a5371cdc13d924b19eafcbd91f33eb978"></a>
+std::set&lt; <a class="el" href="classLineSegmentIntersector_1_1LSISegment.html">LSISegment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lower</b></td></tr>
+<tr class="separator:a5371cdc13d924b19eafcbd91f33eb978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92991afc8378f4aafee2201c115ae83d"><td class="memItemLeft" align="right" valign="top"><a id="a92991afc8378f4aafee2201c115ae83d"></a>
+std::set&lt; <a class="el" href="classLineSegmentIntersector_1_1LSISegment.html">LSISegment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>containing</b></td></tr>
+<tr class="separator:a92991afc8378f4aafee2201c115ae83d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a404283b0014c4d5c195b02b1cd922b50"><td class="memItemLeft" align="right" valign="top"><a id="a404283b0014c4d5c195b02b1cd922b50"></a>
+<a class="el" href="classStatus.html">Status</a>&lt; <a class="el" href="classLineSegmentIntersector_1_1LSISegment.html">LSISegment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>status</b></td></tr>
+<tr class="separator:a404283b0014c4d5c195b02b1cd922b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10c2e27236152bf4ee9f9a696ff3549e"><td class="memItemLeft" align="right" valign="top"><a id="a10c2e27236152bf4ee9f9a696ff3549e"></a>
+std::vector&lt; <a class="el" href="classLineSegment.html">LineSegment</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>input</b></td></tr>
+<tr class="separator:a10c2e27236152bf4ee9f9a696ff3549e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefa3fc6020399c9f7c31a46d4ec3d9bd"><td class="memItemLeft" align="right" valign="top"><a id="aefa3fc6020399c9f7c31a46d4ec3d9bd"></a>
+<a class="el" href="classEventQueue.html">EventQueue</a>&lt; <a class="el" href="classLineSegmentIntersector_1_1LSIPoint.html">LineSegmentIntersector::LSIPoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>eventQueue</b></td></tr>
+<tr class="separator:aefa3fc6020399c9f7c31a46d4ec3d9bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:ac30b368f45ebad37982a7529f590c24d"><td class="memItemLeft" align="right" valign="top"><a id="ac30b368f45ebad37982a7529f590c24d"></a>
-std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const LSISegment &amp;lsiSegment)</td></tr>
-<tr class="separator:ac30b368f45ebad37982a7529f590c24d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1641902c18c0376d0303883d4e759e5"><td class="memItemLeft" align="right" valign="top"><a id="aa1641902c18c0376d0303883d4e759e5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>swap</b> (LSIPoint &amp;, LSIPoint &amp;)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>swap</b> (<a class="el" href="classLineSegmentIntersector_1_1LSIPoint.html">LSIPoint</a> &amp;, <a class="el" href="classLineSegmentIntersector_1_1LSIPoint.html">LSIPoint</a> &amp;)</td></tr>
 <tr class="separator:aa1641902c18c0376d0303883d4e759e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
