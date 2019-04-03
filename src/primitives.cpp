@@ -47,14 +47,15 @@ bool Point::is_nan(){
     return(std::isnan(x) || std::isnan(y));
 }
 
-bool LineSegment::contains_point(Point pt) const{
+bool LineSegment::contains_point(Point& pt) const{
     if (pt == start_point || pt == end_point){
         return true;
     }
     coordinate slope_diff = (pt.x - start_point.x) * (pt.y - end_point.y)
                           - (pt.x - end_point.x) * (pt.y - start_point.y);
 
-    if(slope_diff != 0){
+    if(abs(slope_diff) > ERROR){
+        //std::cout << "\t"<<"SLOPE DIFF == " << slope_diff << "\n";
         return false;
     }
     else {
@@ -85,7 +86,7 @@ Point LineSegment::intersects_at(LineSegment ls){
     ta /= denr;
     tb /= denr;
 
-    if(0 <= ta && ta <= 1 && 0 <= ta && ta <= 1){
+    if(0 <= ta && ta <= 1 && 0 <= tb && tb <= 1){
         return Point(p1.x + ta * (p2.x - p1.x), p1.y + ta * (p2.y - p1.y));
     }
     else {
@@ -132,6 +133,7 @@ Point LineSegment::end_pt() const {
 
 Point LineSegment::horizontal_projection(Point pt) const{
     if(end_point.y == start_point.y){
+        // std::cout << "SHOULD NOT PRINT";
         return NAN_POINT;
     }
     else {
@@ -139,7 +141,7 @@ Point LineSegment::horizontal_projection(Point pt) const{
         x_coord *= (end_point.x - start_point.x);
         x_coord += start_point.x;
         Point retPt = Point(x_coord, pt.y);
-        return this -> contains_point(retPt) ? retPt : NAN_POINT ;
+        return this->contains_point(retPt) ? retPt : NAN_POINT ;
     }
 }
 

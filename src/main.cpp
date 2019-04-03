@@ -8,8 +8,8 @@
 #include "LSIGraphix.h"
 using namespace std;
 
-#define DEFAULT_FILENAME "../src/test.txt"
-
+//#define DEFAULT_FILENAME "../src/test.txt"
+#define DEFAULT_FILENAME "../test/special.txt"
 void init_graphix_class(LSIGraphix* x){
     x->loopie();
 }
@@ -71,5 +71,14 @@ int main(int argc, char** argv){
     }
 
     t1.join();
+
+    /*
+    LineSegment a(Point(0,0),Point(10,30));
+    LineSegment b(Point(0,0),Point(10,20));
+    Point p(10,20);
+    cout << a.horizontal_projection(p) << "\n";
+    cout << b.horizontal_projection(p) << "\n";
+    */
+
     return 0;
 }

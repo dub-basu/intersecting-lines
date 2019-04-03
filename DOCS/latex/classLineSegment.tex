@@ -12,17 +12,29 @@ Class for line segments.
 
 
 Inheritance diagram for Line\+Segment\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{classLineSegment__inherit__graph}
+\end{center}
+\end{figure}
 
 
 Collaboration diagram for Line\+Segment\+:
-% FIG 1
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{classLineSegment__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classLineSegment_a691e185edf3aa7e2dc12307f9ef4be6b}{Line\+Segment} (\hyperlink{classPoint}{Point} p1, \hyperlink{classPoint}{Point} p2)
 \begin{DoxyCompactList}\small\item\em Constructor, specifying two endpoints of the segment. \end{DoxyCompactList}\item 
-bool \hyperlink{classLineSegment_a8dc46fa1dd259befff8cea92232e2a29}{contains\+\_\+point} (\hyperlink{classPoint}{Point} pt) const
+bool \hyperlink{classLineSegment_a1b18c795d8c3c6f2724074062967671e}{contains\+\_\+point} (\hyperlink{classPoint}{Point} \&pt) const
 \item 
 \hyperlink{classPoint}{Point} \hyperlink{classLineSegment_a3bdc73ce4696a76b7c7dd143556c95b6}{intersects\+\_\+at} (\hyperlink{classLineSegment}{Line\+Segment} ls)
 \item 
@@ -79,11 +91,11 @@ Constructor, specifying two endpoints of the segment.
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classLineSegment_a8dc46fa1dd259befff8cea92232e2a29}\label{classLineSegment_a8dc46fa1dd259befff8cea92232e2a29}} 
+\mbox{\Hypertarget{classLineSegment_a1b18c795d8c3c6f2724074062967671e}\label{classLineSegment_a1b18c795d8c3c6f2724074062967671e}} 
 \index{Line\+Segment@{Line\+Segment}!contains\+\_\+point@{contains\+\_\+point}}
 \index{contains\+\_\+point@{contains\+\_\+point}!Line\+Segment@{Line\+Segment}}
 \subsubsection{\texorpdfstring{contains\+\_\+point()}{contains\_point()}}
-{\footnotesize\ttfamily bool Line\+Segment\+::contains\+\_\+point (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{pt }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily bool Line\+Segment\+::contains\+\_\+point (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point} \&}]{pt }\end{DoxyParamCaption}) const}
 
 This function checks if a point lies on the given line segment. It returns true even if the point is onr of the endpoints of the line segment 
 \begin{DoxyParams}{Parameters}

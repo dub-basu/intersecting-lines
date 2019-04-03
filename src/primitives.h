@@ -22,8 +22,7 @@ typedef long double len;
  */
 #define NAN_LINE LineSegment(NAN_POINT, NAN_POINT)
 
-
-
+#define ERROR 1e-8
 /**
  *  \class Point
  *
@@ -129,7 +128,7 @@ class LineSegment{
          * @param pt Point to check
          * @return true if point lies on line
          */
-        bool contains_point(Point pt) const;
+        bool contains_point(Point& pt) const;
 
         /**
          *

@@ -269,7 +269,11 @@ void Status<T>::remove(T key){
 	root = __remove(root, key);
 }
 
-
+template <class T>
+T* Status<T>::getRoot(){
+	if(root == NULL) return NULL;
+	else return &(root->key);
+}
 // Another instance of me not knowing wtf is happening;
 template class Status<LineSegmentIntersector::LSISegment>;
 template class Status<int>;

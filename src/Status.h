@@ -67,6 +67,9 @@ public:
      */
     T* searchR(T);
 
+
+    T* getRoot();
+
 };
 
 #endif
