@@ -9,7 +9,7 @@
 #include "primitives.h"
 #include "Status.h"
 #include "LSIGraphix.h"
-
+#define abs fabsl
 /**
  * \class
  * LSI Result is the class that is returned by LineSegmentIntersector

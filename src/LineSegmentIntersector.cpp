@@ -46,7 +46,7 @@ bool LineSegmentIntersector::LSIPoint::operator<(LineSegmentIntersector::LSIPoin
     if (p1.y < p2.y){
         return false;
     }
-    else if (p1.y == p2.y){
+    else if ( abs(p1.y - p2.y)<ERROR ){
         return p1.x < p2.x;
     }
     else{
@@ -77,12 +77,12 @@ bool LineSegmentIntersector::LSISegment::operator<(const LineSegmentIntersector:
 
     const LSISegment debug = LSISegment(LineSegment(Point(1,9),Point(3,8)));
 
-    if((this_upper.y < this_lower.y) || (this_upper.y == this_lower.y && this_upper.x >= this_lower.x)){
+    if((this_upper.y < this_lower.y) || ( abs(this_upper.y - this_lower.y)<ERROR && this_upper.x >= this_lower.x)){
         Point temp = this_upper;
         this_upper = this_lower;
         this_lower = temp;
     }
-    if((lsi_upper.y < lsi_lower.y) || (lsi_upper.y == lsi_lower.y && lsi_upper.x >= lsi_lower.x)){
+    if((lsi_upper.y < lsi_lower.y) || (abs(lsi_upper.y - lsi_lower.y)<ERROR && lsi_upper.x >= lsi_lower.x)){
         Point temp = lsi_upper;
         lsi_upper = lsi_lower;
         lsi_lower = temp;
@@ -202,7 +202,7 @@ LineSegmentIntersector::LineSegmentIntersector(std::vector<LineSegment> &i, LSIG
             p1Type = UPPER;
             p2Type = LOWER;
         }
-        else if(p1.y == p2.y){
+        else if( abs(p1.y - p2.y)<ERROR ) {
             if(p1.x < p2.x){
                 // P1 is upper
                 p1Type = UPPER;
@@ -256,10 +256,11 @@ LSIResult LineSegmentIntersector::computeIntersections() {
 
 void LineSegmentIntersector::handleEventPoint(Point curr) {
     cout << curr << "\n";
-    LSISegment* la
+    //cout<<"EventQueue min="<<eventQueue.peek()<<" curr="<<curr<<endl;
     lastReference = curr;
     while(eventQueue.size() > 0 && eventQueue.peek() == curr) {
         LSIPoint toInsert = eventQueue.extractMin();
+        //cout<<"Next min:"<<eventQueue.peek()<<" toInsert="<<toInsert<<endl;
         if (toInsert.et == UPPER) {
             upper.insert(toInsert.lsiSegment);
             cout << "\t" << toInsert.lsiSegment;
@@ -281,6 +282,7 @@ void LineSegmentIntersector::handleEventPoint(Point curr) {
         } else {
             std::cout << "error\n";
         }
+        //cout<<eventQueue.peek()<<"=="<<curr<<" "<<(eventQueue.peek()==curr)<<endl;
     }
 
     // For reordering efficiently
@@ -372,11 +374,14 @@ void LineSegmentIntersector::findNewEvent(LSISegment* sl, LSISegment* sr, Point 
         if (intersectionPoint.is_nan()) return;
         else{
             if( intersectionPoint.y < pt.y ||
-                (intersectionPoint.y == pt.y && intersectionPoint.x > pt.x)){
+                ( abs(intersectionPoint.y - pt.y)<ERROR && intersectionPoint.x > pt.x)){
                 LSIPoint toAdd(intersectionPoint, *sl, LineSegmentIntersector::CONTAINING);
                 LSIPoint toAdd2(intersectionPoint, *sr, LineSegmentIntersector::CONTAINING);
+                //cout<<"FNE:"<<toAdd<<" "<<toAdd2<<" intersectionPoint="<<intersectionPoint<<endl;
+                //cout<<"Old size="<<eventQueue.size()<<" ";
                 eventQueue.insert(toAdd);
                 eventQueue.insert(toAdd2);
+                //cout<<"New size="<<eventQueue.size()<<endl;
             }
         }
     }

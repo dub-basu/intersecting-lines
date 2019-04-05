@@ -16,7 +16,7 @@ typedef long double len;
  */
 #define NAN_POINT Point(std::numeric_limits<coordinate>::quiet_NaN(), \
                         std::numeric_limits<coordinate>::quiet_NaN())
-
+#define abs fabsl
 /**
  * NAN_LINE is a LineSegment with endpoints as NAN_POINTs
  */

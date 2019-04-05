@@ -1,4 +1,9 @@
 #include "primitives.h"
+#include<iomanip>
+#include <cmath>
+
+#define PERROR 0.000001
+
 
 Point::Point(){
     x = 0;
@@ -17,11 +22,16 @@ Point& Point::operator= (const Point& op){
 
 bool Point::operator==(const Point &p2) {
     // TODO: Floating point errors handle? Some epsilon
-    return this -> x == p2.x && this -> y == p2.y;
+    //std::cout<<*this<<"=="<<p2<<"?? "<<abs(this -> x - p2.x)<<" "<<abs(this -> y - p2.y)<<'\n';
+    return abs(this -> x - p2.x) <= PERROR && abs(this -> y - p2.y) <= PERROR;
+    //return this -> x == p2.x  && this -> y == p2.y;
+
 }
 
 bool Point::operator!=(const Point &p2) {
-    return this->x != p2.x || this->y != p2.y;
+    return abs(this->x - p2.x)>PERROR || abs(this->y - p2.y)>PERROR;
+    //return this->x != p2.x || this->y != p2.y;
+    //return !(*this==p2);
 }
 
 bool Point::operator< (const Point& right) const{
@@ -59,7 +69,7 @@ bool LineSegment::contains_point(Point& pt) const{
         return false;
     }
     else {
-        if(start_point.x == end_point.x)
+        if( abs(start_point.x - end_point.x) <ERROR)
             return(pt.y <= end_point.y && pt.y >= start_point.y);
         else{
             coordinate t = (pt.x - start_point.x) / (end_point.x - start_point.x);
@@ -76,7 +86,7 @@ Point LineSegment::intersects_at(LineSegment ls){
 
     coordinate denr = (p4.x - p3.x)*(p1.y - p2.y) - (p1.x - p2.x)*(p4.y - p3.y);
     
-    if( denr == 0 ){
+    if( abs(denr) <= ERROR ){
         return (NAN_POINT);
     }
 
@@ -104,7 +114,7 @@ LineSegment::LineSegment(Point p1, Point p2){
     if(p1.x < p2.x){
         start_point = p1;
         end_point = p2;
-    } else if (p1.x == p2.x && p1.y < p2.y) {
+    } else if (abs(p1.x - p2.x)<ERROR && p1.y < p2.y) {
         start_point = p1;
         end_point = p2;
     } else {
@@ -119,7 +129,7 @@ bool LineSegment::operator==(const LineSegment &l2) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Point& pt){
-    os << "(" << pt.x << ", " << pt.y << ")";
+    os << "(" << std::setprecision(10) << pt.x << ", " << pt.y << ")";
     return os;
 }
 
@@ -132,7 +142,7 @@ Point LineSegment::end_pt() const {
 }
 
 Point LineSegment::horizontal_projection(Point pt) const{
-    if(end_point.y == start_point.y){
+    if( abs(end_point.y - start_point.y)<ERROR ){
         // std::cout << "SHOULD NOT PRINT";
         return NAN_POINT;
     }
